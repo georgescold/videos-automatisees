@@ -658,6 +658,17 @@ const renderEditor = () => {
   $('f-title').value = state.doc.title ?? '';
   $('f-hook').value = state.doc.hook ?? '';
 
+  // La chaine du script, deplacable vers une autre depuis l'editeur.
+  const chData = state.status?.channels;
+  if (chData) {
+    $('f-channel').innerHTML = chData.channels
+      .map(
+        (c) =>
+          `<option value="${escapeHtml(c.id)}"${(state.doc.channel ?? 'amour') === c.id ? ' selected' : ''}>${escapeHtml(c.name)}</option>`,
+      )
+      .join('');
+  }
+
   const yt = state.doc.youtube ?? {};
   $('f-yt-title').value = yt.title ?? '';
   $('f-yt-description').value = yt.description ?? '';
@@ -810,7 +821,14 @@ const saveScript = async () => {
     // deduites aussi.
     refreshQuota();
     loadEmotions();
-    toast('Script enregistré');
+    // Deplace vers une autre chaine : il disparait de la liste courante,
+    // autant le dire clairement.
+    if ((state.doc.channel ?? 'amour') !== state.activeChannel) {
+      const nom = state.status?.channels?.channels.find((c) => c.id === state.doc.channel)?.name ?? state.doc.channel;
+      toast(`Enregistré et déplacé vers « ${nom} ». Change de chaîne en haut pour le retrouver.`);
+    } else {
+      toast('Script enregistré');
+    }
   } catch (err) {
     toast(err.message, true);
   }
@@ -1306,31 +1324,112 @@ $('o-voice-speed').addEventListener('input', () => {
 // ---------------------------------------------------------------------------
 // Chaines et historique
 // ---------------------------------------------------------------------------
+/** Bascule la chaine active et remet l'ecran a neuf. */
+const switchChannel = async (id) => {
+  await api('/api/channels/active', {
+    method: 'PUT',
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify({id}),
+  });
+  state.activeChannel = id;
+  if (state.status?.channels) state.status.channels.active = id;
+  $('channel-select').value = id;
+  // Le script ouvert appartient peut-etre a une autre chaine : on repart net.
+  state.slug = null;
+  state.doc = null;
+  markDirty(false);
+  showMode('empty');
+  $('result').hidden = true;
+  $('publish').hidden = true;
+  renderScriptList();
+  renderCounters();
+  loadHistory();
+};
+
 $('channel-select').addEventListener('change', async () => {
   try {
-    await api('/api/channels/active', {
-      method: 'PUT',
-      headers: {'content-type': 'application/json'},
-      body: JSON.stringify({id: $('channel-select').value}),
-    });
-    state.activeChannel = $('channel-select').value;
-    // Le script ouvert appartient peut-etre a une autre chaine : on repart net.
-    state.slug = null;
-    state.doc = null;
-    markDirty(false);
-    showMode('empty');
-    $('result').hidden = true;
-    $('publish').hidden = true;
-    renderScriptList();
-    renderCounters();
-    loadHistory();
+    await switchChannel($('channel-select').value);
   } catch (err) {
     toast(err.message, true);
   }
 });
 
+/**
+ * Le gestionnaire de chaines : renommer en tapant dans le nom, activer,
+ * supprimer. La suppression est refusee par le serveur tant que la chaine
+ * a des scripts ou qu'elle est la derniere : le message explique quoi faire.
+ */
+const renderChannelManager = () => {
+  const data = state.status?.channels;
+  if (!data) return;
+  const list = $('channel-list');
+
+  list.innerHTML = data.channels
+    .map(
+      (c) => `<li>
+        <div class="k-head">
+          <input class="ch-name" data-rename="${escapeHtml(c.id)}" value="${escapeHtml(c.name)}" maxlength="60" title="Clique pour renommer" />
+          ${
+            c.id === data.active
+              ? '<span class="tag">Active</span>'
+              : `<button class="btn btn-ghost small" data-activate="${escapeHtml(c.id)}">Activer</button>`
+          }
+          <button class="icon-btn tiny" data-delch="${escapeHtml(c.id)}" title="Supprimer cette chaîne"
+                  ${data.channels.length === 1 ? 'disabled' : ''}>×</button>
+        </div>
+      </li>`,
+    )
+    .join('');
+
+  for (const input of list.querySelectorAll('[data-rename]')) {
+    input.addEventListener('change', async () => {
+      try {
+        await api(`/api/channels/${encodeURIComponent(input.dataset.rename)}`, {
+          method: 'PATCH',
+          headers: {'content-type': 'application/json'},
+          body: JSON.stringify({name: input.value}),
+        });
+        await loadStatus();
+        renderChannelManager();
+        toast('Chaîne renommée');
+      } catch (err) {
+        toast(err.message, true);
+      }
+    });
+  }
+
+  for (const button of list.querySelectorAll('[data-activate]')) {
+    button.addEventListener('click', async () => {
+      try {
+        await switchChannel(button.dataset.activate);
+        renderChannelManager();
+      } catch (err) {
+        toast(err.message, true);
+      }
+    });
+  }
+
+  for (const button of list.querySelectorAll('[data-delch]')) {
+    button.addEventListener('click', async () => {
+      const id = button.dataset.delch;
+      if (!confirmTwice(`delch:${id}`, 'Reclique pour supprimer cette chaîne')) return;
+      try {
+        await api(`/api/channels/${encodeURIComponent(id)}`, {method: 'DELETE'});
+        await loadStatus();
+        renderChannelManager();
+        renderScriptList();
+        loadHistory();
+        toast('Chaîne supprimée');
+      } catch (err) {
+        toast(err.message, true);
+      }
+    });
+  }
+};
+
 $('channel-new').addEventListener('click', () => {
   $('channel-overlay').hidden = false;
+  renderChannelManager();
   $('channel-name').focus();
 });
 
@@ -1354,8 +1453,16 @@ const createChannel = async () => {
     });
     $('channel-name').value = '';
     $('channel-overlay').hidden = true;
+    // La creation active la nouvelle chaine : l'ecran repart a neuf.
     await loadStatus();
+    state.slug = null;
+    state.doc = null;
+    markDirty(false);
+    showMode('empty');
+    $('result').hidden = true;
+    $('publish').hidden = true;
     renderScriptList();
+    renderCounters();
     loadHistory();
     toast(`Chaîne « ${name} » créée et activée`);
   } catch (err) {
@@ -1850,6 +1957,12 @@ $('new-create').addEventListener('click', createScript);
 $('new-title').addEventListener('keydown', (event) => {
   if (event.key === 'Enter') createScript();
   if (event.key === 'Escape') $('new-cancel').click();
+});
+
+$('f-channel').addEventListener('change', () => {
+  if (!state.doc) return;
+  state.doc.channel = $('f-channel').value;
+  markDirty();
 });
 
 $('save-script').addEventListener('click', saveScript);

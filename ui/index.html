@@ -139,6 +139,7 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             <h2 class="title"><span class="stepchip">2</span><span id="editor-slug">.</span></h2>
             <div class="row-actions">
               <span class="dirty" id="dirty-flag" hidden>Modifié</span>
+              <select id="f-channel" class="mini-select" title="Chaîne de ce script"></select>
               <button class="btn btn-ghost danger small" id="delete-script">Supprimer</button>
               <button class="btn" id="save-script">Enregistrer</button>
             </div>
@@ -520,22 +521,28 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
       </div>
     </div>
 
-    <!-- Nouvelle chaîne : une autre ligne éditoriale dans le même outil -->
+    <!-- Gestion des chaînes : créer, renommer, activer, supprimer -->
     <div class="overlay" id="channel-overlay" hidden>
       <div class="modal">
         <div class="panel-head">
-          <h2>Nouvelle chaîne</h2>
+          <h2>Chaînes</h2>
           <button class="icon-btn tiny" id="channel-cancel" title="Fermer" aria-label="Fermer">×</button>
         </div>
         <p class="note">
-          Chaque chaîne a ses scripts et son historique de vidéos.
-          Les clés, les voix et les musiques restent partagées.
+          Chaque chaîne a ses scripts et son historique de vidéos ; les clés, voix et musiques
+          sont partagées. Clique sur un nom pour le renommer. Une chaîne ne se supprime que
+          vide : ses scripts doivent d'abord être déplacés (sélecteur dans l'éditeur) ou supprimés.
         </p>
-        <label class="field">
-          <span>Nom de la chaîne</span>
-          <input type="text" id="channel-name" placeholder="Motivation, Sommeil, Histoire…" autocomplete="off" />
-        </label>
-        <button class="btn small wide" id="channel-create">Créer et activer</button>
+        <ul class="key-list" id="channel-list"></ul>
+        <div class="inset">
+          <label class="field">
+            <span>Nouvelle chaîne</span>
+            <div class="voice-pick">
+              <input type="text" id="channel-name" placeholder="Motivation, Sommeil, Histoire…" autocomplete="off" />
+              <button class="btn small" id="channel-create">Créer et activer</button>
+            </div>
+          </label>
+        </div>
       </div>
     </div>
 

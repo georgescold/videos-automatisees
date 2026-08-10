@@ -912,6 +912,54 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, d);
     }
 
+    const channelMatch = route.match(/^\/api\/channels\/([a-z0-9-]+)$/);
+    if (channelMatch && req.method === 'PATCH') {
+      const body = JSON.parse((await readBody(req)).toString('utf8'));
+      const name = String(body.name ?? '').trim();
+      if (!name) return json(res, 400, {error: 'Le nom ne peut pas être vide'});
+      const d = readChannels();
+      const channel = d.channels.find((c) => c.id === channelMatch[1]);
+      if (!channel) return json(res, 404, {error: 'Chaîne inconnue'});
+      channel.name = name.slice(0, 60);
+      writeChannels(d);
+      return json(res, 200, d);
+    }
+    if (channelMatch && req.method === 'DELETE') {
+      const id = channelMatch[1];
+      const d = readChannels();
+      if (!d.channels.some((c) => c.id === id)) return json(res, 404, {error: 'Chaîne inconnue'});
+      // Trois garde-fous, dans l'ordre des degats qu'ils evitent :
+      // 1. il faut toujours au moins une chaine ;
+      if (d.channels.length === 1) {
+        return json(res, 400, {error: 'Impossible : il faut au moins une chaîne'});
+      }
+      // 2. une chaine qui a encore des scripts ne se supprime pas — on ne
+      //    detruit jamais du travail d'ecriture par ricochet ;
+      const attached = listScripts().filter((s) => (s.channel ?? 'amour') === id);
+      if (attached.length > 0) {
+        return json(res, 400, {
+          error:
+            `${attached.length} script(s) encore sur cette chaîne. ` +
+            "Déplace-les (sélecteur de chaîne dans l'éditeur) ou supprime-les d'abord.",
+        });
+      }
+      d.channels = d.channels.filter((c) => c.id !== id);
+      // 3. si c'etait la chaine active, on bascule sur la premiere restante.
+      if (d.active === id) d.active = d.channels[0].id;
+      writeChannels(d);
+      // L'historique de la chaine part avec elle.
+      try {
+        fs.writeFileSync(
+          HISTORY_FILE,
+          JSON.stringify(readHistory().filter((e) => e.channel !== id), null, 2),
+          'utf8',
+        );
+      } catch {
+        // jamais bloquant
+      }
+      return json(res, 200, d);
+    }
+
     // --- historique des videos produites, par chaine ---
     if (route === '/api/history' && req.method === 'GET') {
       const channel = url.searchParams.get('channel');

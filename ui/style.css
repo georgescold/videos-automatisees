@@ -1850,3 +1850,42 @@ input[type='range'] {
 .hint {
   line-height: 1.7;
 }
+
+/* Gestionnaire de chaines : le nom se renomme en tapant dedans. */
+.ch-name {
+  flex: 1;
+  min-width: 0;
+  font: 600 13.5px/1.4 var(--body);
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  padding: 6px 9px;
+}
+
+.ch-name:hover {
+  border-color: var(--hairline);
+}
+
+.ch-name:focus {
+  border-color: var(--burgundy);
+  background: var(--field-bg);
+  outline: none;
+}
+
+/* Selecteur discret dans l'en-tete de l'editeur : la chaine du script. */
+.mini-select {
+  font: 600 12px/1.4 var(--body);
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 7px;
+  padding: 6px 8px;
+  max-width: 140px;
+  cursor: pointer;
+}
+
+.mini-select:hover {
+  color: var(--text);
+  border-color: var(--burgundy);
+}
