@@ -669,6 +669,37 @@ const server = http.createServer(async (req, res) => {
       }
     }
 
+    // --- musique deposee a la main (Pixabay, achat perso, n'importe quel mp3) ---
+    if (route === '/api/music/upload' && req.method === 'POST') {
+      const rawName = decodeURIComponent(url.searchParams.get('name') ?? '');
+      // Meme alphabet que la route de lecture /music/... : sinon le fichier
+      // s'enregistre mais devient introuvable a l'ecoute.
+      const clean = rawName
+        .replace(/[^A-Za-z0-9 ._-]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/\s+\./g, '.')
+        .trim();
+      const ext = (clean.split('.').pop() ?? '').toLowerCase();
+      // Les quatre formats que la liste et la route d'ecoute savent servir.
+      const jouables = ['mp3', 'wav', 'm4a', 'aac'];
+      if (!clean || !jouables.includes(ext)) {
+        return json(res, 400, {error: `Formats acceptés : ${jouables.join(', ')}`});
+      }
+
+      const buffer = await readBody(req);
+      if (buffer.length === 0) return json(res, 400, {error: 'Fichier vide'});
+
+      ensureDir(p('public', 'music'));
+      // Jamais d'ecrasement silencieux : un doublon prend un suffixe.
+      let target = clean;
+      let n = 1;
+      while (fs.existsSync(p('public', 'music', target))) {
+        target = clean.replace(new RegExp(`\\.${ext}$`), `-${++n}.${ext}`);
+      }
+      fs.writeFileSync(p('public', 'music', target), buffer);
+      return json(res, 201, {file: target, bytes: buffer.length});
+    }
+
     if (route === '/api/music/download' && req.method === 'POST') {
       const track = JSON.parse((await readBody(req)).toString('utf8'));
       if (!track?.url || !/^https:\/\//i.test(track.url)) {
@@ -1076,9 +1107,13 @@ const server = http.createServer(async (req, res) => {
     }
 
     // --- ecoute des musiques deposees ---
-    const musicPlayMatch = route.match(/^\/music\/([A-Za-z0-9 ._-]+\.(?:mp3|wav|m4a|aac))$/i);
+    // Le chemin arrive encode (%20 pour une espace) : il faut le decoder AVANT
+    // de le filtrer, sinon tout nom contenant une espace repond 404.
+    const musicPlayMatch = decodeURIComponent(route).match(
+      /^\/music\/([A-Za-z0-9 ._-]+\.(?:mp3|wav|m4a|aac))$/i,
+    );
     if (musicPlayMatch && req.method === 'GET') {
-      return serveMedia(req, res, p('public', 'music', decodeURIComponent(musicPlayMatch[1])));
+      return serveMedia(req, res, p('public', 'music', musicPlayMatch[1]));
     }
 
     res.writeHead(404, {'content-type': 'text/plain; charset=utf-8'}).end('Introuvable');

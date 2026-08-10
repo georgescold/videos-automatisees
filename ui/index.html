@@ -240,10 +240,17 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
           <div class="group">
             <div class="group-head">
               <h3>Musique</h3>
-              <button class="btn btn-ghost small" id="music-browse">Chercher</button>
+              <div class="row-actions tight">
+                <label class="btn btn-ghost small file">
+                  Ajouter un fichier
+                  <input type="file" id="music-file" accept=".mp3,.wav,.m4a,.aac,audio/*" hidden />
+                </label>
+                <button class="btn btn-ghost small" id="music-browse">Chercher</button>
+              </div>
             </div>
 
             <div class="music-current" id="music-current">
+              <button class="icon-btn tiny" id="music-play" title="Écouter cette musique" hidden>▸</button>
               <span id="music-name">Aucune musique</span>
               <button class="icon-btn tiny" id="music-clear" title="Retirer" hidden>×</button>
             </div>
@@ -345,7 +352,10 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
               </div>
               <label class="field">
                 <span>Voix cible ElevenLabs</span>
-                <select id="o-sts-voice"><option value="">Charge les voix…</option></select>
+                <div class="voice-pick">
+                  <select id="o-sts-voice"><option value="">Charge les voix…</option></select>
+                  <button type="button" class="icon-btn tiny" id="sts-preview" title="Écouter la voix cible">▸</button>
+                </div>
               </label>
               <p class="note" id="sts-note">Nécessite la clé ElevenLabs.</p>
             </div>
@@ -356,14 +366,17 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             <label class="check">
               <input type="checkbox" id="o-force-voice" />
               <span>Re-synthétiser la voix</span>
+              <span class="info" tabindex="0" title="La voix off est gardée en cache d'une production à l'autre, pour ne pas consommer deux fois les crédits ElevenLabs. Coche après un changement de voix, d'intonation ou de texte : la synthèse est refaite, et facturée. Le récapitulatif ci-dessus affiche le coût exact.">i</span>
             </label>
             <label class="check">
               <input type="checkbox" id="o-no-media" />
               <span>Garder les visuels déjà téléchargés</span>
+              <span class="info" tabindex="0" title="Saute la recherche Pexels et réutilise les images et vidéos déjà sur le disque pour ce script. Plus rapide, et le montage reste identique à la production précédente. À décocher si tu as changé les requêtes visuelles des beats.">i</span>
             </label>
             <label class="check">
               <input type="checkbox" id="o-build-only" />
               <span>Préparer seulement, sans rendre</span>
+              <span class="info" tabindex="0" title="Prépare tout (voix, visuels, sous-titres) mais ne fabrique pas le MP4. Sert à vérifier le montage dans Remotion Studio (npm run studio) avant de lancer un long rendu.">i</span>
             </label>
           </details>
 

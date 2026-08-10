@@ -22,6 +22,9 @@ const state = {
   voicesLoaded: null, // « langue:jeu » deja charge
   voiceLanguage: 'fr',
   voiceSet: 'selection', // selection maison | tout le catalogue
+  // Voix mises en etoile : elles remontent en tete de liste. Memorise dans le
+  // navigateur de chaque machine.
+  favs: new Set(JSON.parse(localStorage.getItem('voiceFavs') ?? '[]')),
   voices: [], // catalogue : voix du compte + bibliotheque
   emotions: null, // intonation retenue par beat (declaree ou deduite)
   keys: null, // trousseau ElevenLabs + quotas
@@ -209,8 +212,43 @@ const setMusic = (file, attribution = null) => {
   $('music-attribution').textContent = attribution
     ? `À créditer en description : ${attribution}`
     : '';
+  $('music-play').hidden = !file;
   renderCounters();
 };
+
+// Ecouter la musique retenue pour la video, sans la chercher dans un dossier.
+$('music-play').addEventListener('click', () => {
+  if (!state.music) return;
+  const audio = $('preview-audio');
+  const src = `/music/${encodeURIComponent(state.music)}`;
+  if (audio.dataset.id === src && !audio.paused) {
+    audio.pause();
+    return;
+  }
+  audio.src = src;
+  audio.dataset.id = src;
+  audio.volume = 0.8;
+  audio.play().catch(() => toast('Lecture impossible', true));
+});
+
+// N'importe quel fichier audio a soi : Pixabay, achat, export perso. Le
+// fichier part dans public/music et devient la musique de la video.
+$('music-file').addEventListener('change', async (event) => {
+  const file = event.target.files?.[0];
+  event.target.value = '';
+  if (!file) return;
+  try {
+    const r = await api(`/api/music/upload?name=${encodeURIComponent(file.name)}`, {
+      method: 'POST',
+      body: file,
+    });
+    await loadStatus();
+    setMusic(r.file, null);
+    toast(`Musique ajoutée : ${r.file} (${Math.round(r.bytes / 1024)} Ko)`);
+  } catch (err) {
+    toast(err.message, true);
+  }
+});
 
 const renderTracks = (tracks) => {
   const list = $('music-results');
@@ -1058,7 +1096,11 @@ const filteredVoices = () => {
 
 const renderVoiceList = () => {
   const list = $('voice-list');
-  const voices = filteredVoices();
+  // Les favorites d'abord : c'est l'organisation demandee, la plus simple qui
+  // soit. Le tri est stable, le reste de l'ordre ne bouge pas.
+  const voices = filteredVoices()
+    .slice()
+    .sort((a, b) => (state.favs.has(b.id) ? 1 : 0) - (state.favs.has(a.id) ? 1 : 0));
   const chosen = state.doc?.voice_id ?? '';
 
   $('voices-count').textContent = `${voices.length} voix`;
@@ -1072,14 +1114,26 @@ const renderVoiceList = () => {
     .map(
       (v) => `<li class="${v.id === chosen ? 'chosen' : ''}">
         <button class="icon-btn tiny" data-play="${escapeHtml(v.id)}" title="Écouter l'extrait">▸</button>
-        <span class="v-name">${v.curated && state.voiceSet === 'tout' ? '★ ' : ''}${escapeHtml(v.name)}
+        <span class="v-name">${escapeHtml(v.name)}
           <span class="v-meta">${escapeHtml(v.note ?? (traitsOf(v) || '—'))}</span>
         </span>
+        <button class="fav${state.favs.has(v.id) ? ' on' : ''}" data-fav="${escapeHtml(v.id)}"
+                title="${state.favs.has(v.id) ? 'Retirer des favorites' : 'Mettre en favorite'}">★</button>
         <button class="btn btn-ghost small" data-sample="${escapeHtml(v.id)}">Sur mon script</button>
         <button class="btn small" data-pick="${escapeHtml(v.id)}">${v.id === chosen ? 'Choisie' : 'Choisir'}</button>
       </li>`,
     )
     .join('');
+
+  for (const button of list.querySelectorAll('[data-fav]')) {
+    button.addEventListener('click', () => {
+      const id = button.dataset.fav;
+      if (state.favs.has(id)) state.favs.delete(id);
+      else state.favs.add(id);
+      localStorage.setItem('voiceFavs', JSON.stringify([...state.favs]));
+      renderVoiceList();
+    });
+  }
 
   const audio = $('preview-audio');
 
@@ -1177,6 +1231,22 @@ $('voice-preview').addEventListener('click', () => {
   if (!voice?.preview) return toast('Choisis une voix pour l\'écouter', true);
   const audio = $('preview-audio');
   if (audio.dataset.id === voice.id && !audio.paused) return audio.pause();
+  audio.src = voice.preview;
+  audio.dataset.id = voice.id;
+  audio.volume = 0.9;
+  audio.play().catch(() => toast('Écoute impossible', true));
+});
+
+// Ecouter la voix cible du speech-to-speech avant de lancer : l'extrait
+// officiel de la voix, gratuit.
+$('sts-preview').addEventListener('click', () => {
+  const voice = state.voices.find((v) => v.id === $('o-sts-voice').value);
+  if (!voice?.preview) return toast('Choisis une voix cible à écouter', true);
+  const audio = $('preview-audio');
+  if (audio.dataset.id === voice.id && !audio.paused) {
+    audio.pause();
+    return;
+  }
   audio.src = voice.preview;
   audio.dataset.id = voice.id;
   audio.volume = 0.9;

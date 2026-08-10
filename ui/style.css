@@ -1205,6 +1205,51 @@ input[type='range'] {
   font-size: 12.5px;
 }
 
+/* ---------- pastille d'information ---------- */
+.info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  border-radius: 50%;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  font-size: 10.5px;
+  font-style: italic;
+  font-weight: 600;
+  cursor: help;
+  flex-shrink: 0;
+}
+
+.info:hover,
+.info:focus {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+/* ---------- favoris de voix ---------- */
+.fav {
+  background: none;
+  border: 0;
+  padding: 2px 4px;
+  font-size: 17px;
+  line-height: 1;
+  color: var(--hairline);
+  cursor: pointer;
+  transition: color 200ms, transform 200ms var(--ease-lift);
+}
+
+.fav:hover {
+  color: var(--warning);
+  transform: scale(1.15);
+}
+
+.fav.on {
+  color: var(--warning);
+}
+
 /* ---------- parcours en trois etapes ---------- */
 .stepchip {
   display: inline-flex;
