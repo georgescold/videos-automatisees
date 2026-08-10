@@ -1889,3 +1889,15 @@ input[type='range'] {
   color: var(--text);
   border-color: var(--burgundy);
 }
+
+/* ============================================================================
+   Regle de fer : hidden veut dire cache, sans exception.
+   L'attribut [hidden] du navigateur est une regle UA de faible priorite :
+   n'importe quel display:flex d'auteur l'ecrase, et l'element reste visible
+   (recapitulatif vide, bouton Arreter hors production, listes superposees).
+   Le !important est ici LE bon outil : il retablit le contrat de la
+   plateforme au-dessus de tout le reste.
+   ========================================================================== */
+[hidden] {
+  display: none !important;
+}
