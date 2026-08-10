@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/style.css" />
@@ -259,18 +259,15 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             <div class="inset" id="music-panel" hidden>
               <div class="duo">
                 <label class="field">
-                  <span>Source</span>
-                  <select id="music-provider"></select>
-                </label>
-                <label class="field">
                   <span>Ambiance</span>
                   <select id="music-mood"></select>
                 </label>
+                <label class="field">
+                  <span>Ou mots-clés <small>(en anglais)</small></span>
+                  <input type="text" id="music-query" placeholder="slow piano rain" />
+                </label>
               </div>
-              <label class="field">
-                <span>Ou mots-clés <small>(en anglais)</small></span>
-                <input type="text" id="music-query" placeholder="slow piano rain" />
-              </label>
+              <p class="note">Catalogue Openverse : musiques libres (CC0 et CC-BY), crédit généré automatiquement.</p>
               <button class="btn small wide" id="music-search">Chercher</button>
               <ul class="music-list" id="music-results"></ul>
             </div>
@@ -494,13 +491,6 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             <div class="voice-pick">
               <input type="text" id="env-pexels" placeholder="colle ta clé Pexels" autocomplete="off" />
               <button class="btn small" data-env="PEXELS_API_KEY">Enregistrer</button>
-            </div>
-          </label>
-          <label class="field">
-            <span>Jamendo <small>(facultatif : la musique marche sans, via Openverse)</small></span>
-            <div class="voice-pick">
-              <input type="text" id="env-jamendo" placeholder="identifiant client Jamendo" autocomplete="off" />
-              <button class="btn small" data-env="JAMENDO_CLIENT_ID">Enregistrer</button>
             </div>
           </label>
           <p class="note">

@@ -129,13 +129,6 @@ const renderStatus = () => {
       why: 'Facultatif : les voix locales Piper et XTTS ne demandent aucune clé.',
     },
     {
-      label: 'Jamendo',
-      on: s.jamendo,
-      // Facultatif : Openverse fournit la musique sans aucune cle.
-      optional: true,
-      why: "Facultatif : la musique marche sans clé, via Openverse. Jamendo n'ajoute qu'un second catalogue.",
-    },
-    {
       label:
         musicCount > 1 ? `${musicCount} musiques` : musicCount === 1 ? '1 musique' : 'Aucune musique',
       on: musicCount > 0,
@@ -170,14 +163,6 @@ const renderStatus = () => {
     xttsBtn.disabled = !s.xtts;
     xttsBtn.title = s.xtts ? '' : 'XTTS pas encore installé';
   }
-
-  // Openverse ne demande aucune cle : c'est la source par defaut.
-  $('music-provider').innerHTML = s.providers
-    .map(
-      (p) =>
-        `<option value="${p.id}" ${p.available ? '' : 'disabled'}>${p.label}${p.available ? '' : ' (clé absente)'}</option>`,
-    )
-    .join('');
 
   // La musique choisie doit toujours exister sur le disque.
   if (state.music && !s.music.some((m) => m.file === state.music)) setMusic(null);
@@ -281,7 +266,7 @@ const renderTracks = (tracks) => {
       audio.src = track.preview;
       audio.dataset.id = track.id;
       audio.volume = 0.7;
-      audio.play().catch(() => toast('Écoute impossible depuis Jamendo', true));
+      audio.play().catch(() => toast('Écoute impossible', true));
     });
   }
 
@@ -317,8 +302,7 @@ const searchMusic = async () => {
   button.textContent = 'Recherche...';
   try {
     const tracks = await api(
-      `/api/music/search?provider=${encodeURIComponent($('music-provider').value)}` +
-        `&mood=${encodeURIComponent($('music-mood').value)}` +
+      `/api/music/search?mood=${encodeURIComponent($('music-mood').value)}` +
         `&q=${encodeURIComponent($('music-query').value)}`,
     );
     renderTracks(tracks);
@@ -330,7 +314,6 @@ const searchMusic = async () => {
   }
 };
 
-$('music-provider').addEventListener('change', searchMusic);
 $('music-mood').addEventListener('change', searchMusic);
 
 $('music-browse').addEventListener('click', () => {
@@ -1426,13 +1409,13 @@ const addKey = async () => {
 
 $('key-add').addEventListener('click', addKey);
 
-// Les cles simples du .env : Pexels et Jamendo, reglables sans ouvrir de
+// Les cles simples du .env : Pexels, reglable sans ouvrir de
 // fichier. C'est ce qui manquait pour qu'une installation neuve soit
 // utilisable sans passer par l'editeur de texte.
 for (const button of document.querySelectorAll('[data-env]')) {
   button.addEventListener('click', async () => {
     const name = button.dataset.env;
-    const input = name === 'PEXELS_API_KEY' ? $('env-pexels') : $('env-jamendo');
+    const input = $('env-pexels');
     button.disabled = true;
     button.textContent = '…';
     try {

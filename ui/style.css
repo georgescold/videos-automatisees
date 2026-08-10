@@ -7,61 +7,62 @@
    texte creme atteint 8,1:1. Le texte courant passe en creme. */
 
 :root {
-  /* Palette de marque, invariante */
+  /* Palette de marque : le burgundy reste l'accent, tout le reste passe en
+     neutres froids. Registre outil, pas magazine. */
   --burgundy: #8b2d4a;
   --rose: #b5001f;
   --plum: #7a0016;
   --creme: #fbf9f7;
-  --ink: #1f1115;
+  --ink: #17171a;
 
   /* Systeme */
-  --success: #5e8a72;
+  --success: #3d8a63;
   --warning: #b8783d;
-  --error: #b5001f;
+  --error: #c22f45;
 
-  /* Theme clair */
-  --page: #fbf9f7;
+  /* Theme clair : surfaces neutres, hairlines nettes */
+  --page: #f6f6f8;
   --surface: #ffffff;
-  --inset: #fbf9f7;
-  --hairline: #efe6e9;
-  --text: #1f1115;
-  /* Le muted de DESIGN.md (#8B7D85) ne monte qu'a 3,91:1 sur blanc, sous le
-     minimum AA de 4,5. Derive vers l'encre a 85 % : #7B6D74 donne 4,91:1 sur
-     blanc et 4,67:1 sur creme, en gardant le meme gris chaud. */
-  --muted: #7b6d74;
+  --inset: #f1f1f4;
+  --hairline: #e4e4e9;
+  --text: #17171a;
+  --muted: #6d6d77;
   --btn-text: #8b2d4a;
-  --btn-border: #8b2d4a;
-  --accent-soft: rgba(139, 45, 74, 0.06);
-  --glass: rgba(255, 255, 255, 0.72);
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  --shadow-lift: 0 10px 26px rgba(31, 17, 21, 0.09);
+  --btn-border: #d8c3cb;
+  --accent-soft: rgba(139, 45, 74, 0.07);
+  --glass: rgba(255, 255, 255, 0.85);
+  --shadow: 0 1px 2px rgba(20, 20, 26, 0.05);
+  --shadow-lift: 0 8px 24px rgba(20, 20, 26, 0.09);
   --field-bg: #ffffff;
 
-  --card-radius: 20px;
-  --cta-radius: 15px;
-  --field-radius: 12px;
+  --card-radius: 14px;
+  --cta-radius: 10px;
+  --field-radius: 8px;
   --ease-lift: cubic-bezier(0.34, 1.4, 0.64, 1);
 
-  --display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  /* Une seule famille, graisse et taille font la hierarchie. Le monospace
+     porte tout ce qui est chiffre : credits, durees, compteurs. */
   --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --quote: 'Cormorant Garamond', Georgia, serif;
+  --display: var(--body);
+  --quote: var(--body);
+  --mono: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
 }
 
 :root[data-theme='dark'] {
-  --page: #0a0709;
-  --surface: #171014;
-  --inset: #1f161b;
-  --hairline: #2e2129;
-  --text: #fbf9f7;
-  --muted: #a8959d;
-  /* Le burgundy ne passe pas en texte sur ce fond : on garde le creme. */
-  --btn-text: #fbf9f7;
-  --btn-border: #3d2b34;
-  --accent-soft: rgba(139, 45, 74, 0.22);
-  --glass: rgba(31, 22, 27, 0.82);
-  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lift: 0 12px 30px rgba(0, 0, 0, 0.5);
-  --field-bg: #120c10;
+  --page: #0b0b0d;
+  --surface: #131316;
+  --inset: #1a1a1f;
+  --hairline: #26262c;
+  --text: #f4f4f6;
+  --muted: #9a9aa4;
+  /* Le burgundy ne passe pas en texte sur ce fond : on garde le clair. */
+  --btn-text: #f4f4f6;
+  --btn-border: #34343c;
+  --accent-soft: rgba(160, 62, 92, 0.16);
+  --glass: rgba(19, 19, 22, 0.86);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-lift: 0 10px 28px rgba(0, 0, 0, 0.5);
+  --field-bg: #0f0f12;
 }
 
 * {
@@ -1515,4 +1516,106 @@ input[type='range'] {
 
 :root[data-theme='dark'] .link {
   color: var(--text);
+}
+
+/* ============================================================================
+   Surcouche « outil tech » : Playfair et Cormorant ont disparu, Inter fait
+   toute la hierarchie par la graisse. Les chiffres passent en monospace.
+   Posee en fin de fichier pour surcharger les blocs historiques.
+   ========================================================================== */
+
+.brand h1,
+.panel-head h2.title,
+.welcome h3,
+.modal .panel-head h2,
+.script-list .s-title {
+  font-family: var(--body);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.brand h1 {
+  font-size: 17.5px;
+}
+
+.panel-head h2.title,
+.modal .panel-head h2 {
+  font-size: 17px;
+}
+
+.welcome h3 {
+  font-size: 21px;
+}
+
+.script-list .s-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hint em,
+.welcome em {
+  font-family: var(--body);
+  font-style: italic;
+}
+
+/* Les donnees chiffrees se reconnaissent au premier regard. */
+.counters,
+.recap-item,
+.k-meta,
+.key-total,
+.job-elapsed,
+.progress-legend,
+.s-meta,
+.v-meta,
+.t-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.recap-item {
+  font-size: 11.5px;
+  border-radius: 7px;
+}
+
+/* Segments : rail incruste, curseur net. */
+.seg {
+  background: var(--inset);
+  border: 1px solid var(--hairline);
+  border-radius: 9px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.seg-btn {
+  border-radius: 6px;
+}
+
+/* Pastilles d'etat : plus denses, moins bonbon. */
+.pill {
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+}
+
+.badge,
+.tag {
+  border-radius: 5px;
+}
+
+/* Boutons : angles nets, relief discret. */
+.btn {
+  font-weight: 600;
+}
+
+.btn-primary {
+  box-shadow: 0 1px 2px rgba(20, 20, 26, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.script-list button,
+.voice-list li,
+.key-list li {
+  border-radius: 10px;
 }

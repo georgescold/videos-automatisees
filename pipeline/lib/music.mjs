@@ -2,14 +2,11 @@
  * Musique de fond.
  *
  * Pexels n'expose AUCUN endpoint audio : son API ne couvre que les photos et
- * les videos. Deux sources sont donc branchees :
+ * les videos. La recherche passe donc par Openverse, agregateur Creative
+ * Commons sans cle ; et n'importe quel fichier audio peut etre depose a la
+ * main depuis l'interface.
  *
- *   - Openverse (defaut) : agregateur Creative Commons, AUCUNE cle requise.
- *     C'est la source qui marche des l'ouverture du projet.
- *   - Jamendo (optionnel) : catalogue musical mieux tenu, filtre instrumental,
- *     mais demande un JAMENDO_CLIENT_ID gratuit.
- *
- * Dans les deux cas on ne retient que des licences utilisables sur une chaine
+ * Sur Openverse, on ne retient que des licences utilisables sur une chaine
  * monetisee : CC0 (aucune obligation) et CC-BY (attribution obligatoire).
  * Les licences NC, ND et SA sont exclues. L'attribution est ecrite a cote du
  * fichier et reprise dans out/<slug>.meta.json.
@@ -19,7 +16,6 @@ import path from 'node:path';
 import {ensureDir} from './utils.mjs';
 
 const OPENVERSE = 'https://api.openverse.org/v1/audio/';
-const JAMENDO = 'https://api.jamendo.com/v3.0/tracks/';
 const UA = 'love-channel-factory/1.0';
 const MAX_BYTES = 40 * 1024 * 1024;
 
@@ -32,11 +28,6 @@ export const MOODS = {
   cinematique: 'cinematic emotional strings',
   espoir: 'hopeful uplifting inspiring',
   tendu: 'dark tense dramatic',
-};
-
-export const PROVIDERS = {
-  openverse: {label: 'Openverse', needsKey: false},
-  jamendo: {label: 'Jamendo', needsKey: true},
 };
 
 /** Openverse renvoie des titres contenant des entites HTML. */
@@ -120,70 +111,17 @@ const searchOpenverse = async ({query, limit, minSeconds, maxSeconds}) => {
     .slice(0, limit);
 };
 
-// ---------------------------------------------------------------------------
-// Jamendo : avec cle
-// ---------------------------------------------------------------------------
-const searchJamendo = async ({clientId, query, limit, minSeconds, maxSeconds}) => {
-  const url = new URL(JAMENDO);
-  url.searchParams.set('client_id', clientId);
-  url.searchParams.set('format', 'json');
-  url.searchParams.set('limit', String(Math.min(limit, 200)));
-  url.searchParams.set('include', 'musicinfo licenses');
-  url.searchParams.set('audioformat', 'mp32');
-  url.searchParams.set('order', 'popularity_total');
-  // Une voix chantee entrerait en concurrence avec la voix off.
-  url.searchParams.set('vocalinstrumental', 'instrumental');
-  url.searchParams.set('durationbetween', `${minSeconds}_${maxSeconds}`);
-  url.searchParams.set('ccnc', 'false');
-  url.searchParams.set('ccnd', 'false');
-  url.searchParams.set('ccsa', 'false');
-  url.searchParams.set('fuzzytags', query.replace(/\s+/g, '+'));
-
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Jamendo ${res.status} : ${(await res.text()).slice(0, 160)}`);
-
-  const json = await res.json();
-  if (json.headers?.status !== 'success') {
-    throw new Error(`Jamendo : ${json.headers?.error_message || 'reponse inattendue'}`);
-  }
-
-  return (json.results ?? [])
-    .filter((t) => t.audiodownload_allowed && t.audiodownload)
-    .map((t) => {
-      const code = (t.license_ccurl ?? '').match(/licenses\/([a-z-]+)\//i)?.[1]?.toLowerCase() ?? 'by';
-      const track = {
-        id: String(t.id),
-        name: t.name,
-        artist: t.artist_name,
-        duration: t.duration,
-        url: t.audiodownload,
-        preview: t.audio,
-        license: code,
-        licenseUrl: t.license_ccurl ?? '',
-        source: 'jamendo',
-      };
-      return {...track, attribution: attributionFor(track)};
-    });
-};
-
 /**
  * @returns {Promise<Array<{id,name,artist,duration,url,preview,license,licenseUrl,attribution,source}>>}
  */
 export const searchMusic = async ({
-  provider = 'openverse',
-  clientId = '',
   mood = 'romantique',
   query = '',
   limit = 16,
   minSeconds = 40,
   maxSeconds = 900,
-}) => {
+} = {}) => {
   const terms = query.trim() || MOODS[mood] || MOODS.romantique;
-
-  if (provider === 'jamendo') {
-    if (!clientId) throw new Error('JAMENDO_CLIENT_ID manquant');
-    return searchJamendo({clientId, query: terms, limit, minSeconds, maxSeconds});
-  }
   return searchOpenverse({query: terms, limit, minSeconds, maxSeconds});
 };
 

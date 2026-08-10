@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
 import {RenderInternals} from '@remotion/renderer';
-import {downloadTrack, MOODS, PROVIDERS, searchMusic} from '../pipeline/lib/music.mjs';
+import {downloadTrack, MOODS, searchMusic} from '../pipeline/lib/music.mjs';
 import {
   addElevenLabsKey,
   elevenLabsKeys,
@@ -345,7 +345,6 @@ const projectStatus = () => {
     elevenLabsPaid: publicKeys().some((k) => k.quota?.tier && k.quota.tier !== 'free'),
     pexels: Boolean(env.PEXELS_API_KEY),
     // Openverse ne demande aucune cle : la musique marche toujours.
-    jamendo: Boolean(env.JAMENDO_CLIENT_ID),
     // Alignement local des sous-titres : aucune cle. Le modele se telecharge
     // au premier usage si besoin.
     whisper: whisperReady(),
@@ -359,11 +358,6 @@ const projectStatus = () => {
     emotions: Object.entries(EMOTIONS).map(([id, e]) => ({id, label: e.label, tag: e.tag})),
     music,
     moods: Object.keys(MOODS),
-    providers: Object.entries(PROVIDERS).map(([id, meta]) => ({
-      id,
-      label: meta.label,
-      available: !meta.needsKey || Boolean(env.JAMENDO_CLIENT_ID),
-    })),
     busy: [...jobs.values()].some((j) => j.status === 'running'),
   };
 };
@@ -501,13 +495,6 @@ const elevenLabsKey = () => {
   return (alive ?? keys[0])?.key ?? '';
 };
 
-const jamendoClientId = () => {
-  const envFile = p('.env');
-  if (!fs.existsSync(envFile)) return '';
-  const match = fs.readFileSync(envFile, 'utf8').match(/^\s*JAMENDO_CLIENT_ID\s*=\s*(.*)$/m);
-  return match ? match[1].trim().replace(/^["']|["']$/g, '') : '';
-};
-
 // ---------------------------------------------------------------------------
 // Fichiers statiques + medias
 // ---------------------------------------------------------------------------
@@ -643,22 +630,12 @@ const server = http.createServer(async (req, res) => {
       return json(res, 201, {slug, beats: beats.length, stats});
     }
 
-    // --- musique ---
+    // --- musique : Openverse, catalogue libre sans cle ---
     if (route === '/api/music/search' && req.method === 'GET') {
-      const provider = url.searchParams.get('provider') === 'jamendo' ? 'jamendo' : 'openverse';
-      const clientId = jamendoClientId();
-
-      if (provider === 'jamendo' && !clientId) {
-        return json(res, 400, {
-          error:
-            'JAMENDO_CLIENT_ID absent du .env. Reste sur Openverse, qui ne demande aucune cle.',
-        });
-      }
-
       try {
         const tracks = await searchMusic({
-          provider,
-          clientId,
+          provider: 'openverse',
+          clientId: '',
           mood: url.searchParams.get('mood') ?? 'romantique',
           query: url.searchParams.get('q') ?? '',
           limit: 16,
@@ -851,10 +828,10 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, resolveEmotions(beats));
     }
 
-    // --- cles simples (Pexels, Jamendo) reglables depuis l'interface ---
+    // --- cles simples reglables depuis l'interface ---
     if (route === '/api/env-keys' && req.method === 'POST') {
       const body = JSON.parse((await readBody(req)).toString('utf8'));
-      const autorisees = {PEXELS_API_KEY: 'Pexels', JAMENDO_CLIENT_ID: 'Jamendo'};
+      const autorisees = {PEXELS_API_KEY: 'Pexels'};
       const name = String(body.name ?? '');
       if (!Object.hasOwn(autorisees, name)) return json(res, 400, {error: 'Clé inconnue'});
 

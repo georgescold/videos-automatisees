@@ -175,7 +175,7 @@ export const renameElevenLabsKey = (id, label) => {
 export const KEYS_FILE = FILE;
 
 // ---------------------------------------------------------------------------
-// Cles simples du .env (Pexels, Jamendo)
+// Cles simples du .env (Pexels)
 // ---------------------------------------------------------------------------
 const ENV_FILE = p('.env');
 

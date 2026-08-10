@@ -42,7 +42,6 @@ export const env = {
   v3Stability: process.env.ELEVENLABS_V3_STABILITY ?? '0.5',
   stsModelId: process.env.ELEVENLABS_STS_MODEL_ID ?? 'eleven_multilingual_sts_v2',
   pexelsKey: process.env.PEXELS_API_KEY ?? '',
-  jamendoClientId: process.env.JAMENDO_CLIENT_ID ?? '',
   // Modele de transcription locale : base (rapide) ou small (plus precis).
   whisperModel: process.env.WHISPER_MODEL ?? 'base',
   // Voix Piper par defaut (voix off generee en local).

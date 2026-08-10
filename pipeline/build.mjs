@@ -605,12 +605,10 @@ if (flags.music === false || flags['no-music']) {
   }
   musicSrc = `music/${flags.music}`;
 } else if (flags['music-mood']) {
-  // Pexels n'a pas d'API audio : la source automatique est Jamendo,
+  // Pexels n'a pas d'API audio : la recherche passe par Openverse,
   // filtree sur les licences utilisables sur une chaine monetisee.
   log.step(`Recherche d'une musique « ${flags['music-mood']} »`);
-  const provider = flags['music-provider'] === 'jamendo' ? 'jamendo' : 'openverse';
-  const clientId = provider === 'jamendo' ? requireEnv('jamendoClientId', 'JAMENDO_CLIENT_ID') : '';
-  const tracks = await searchMusic({provider, clientId, mood: flags['music-mood'], limit: 10});
+  const tracks = await searchMusic({mood: flags['music-mood'], limit: 10});
   if (tracks.length === 0) {
     log.warn('Aucune piste trouvee pour cette ambiance');
   } else {

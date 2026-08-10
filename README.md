@@ -22,7 +22,6 @@ Copie `.env.example` vers `.env` et renseigne :
 |---|---|---|
 | `ELEVENLABS_VOICE_ID` | https://elevenlabs.io/app/voice-library | voix par défaut |
 | `PEXELS_API_KEY` | https://www.pexels.com/api/new/ | pas de visuels automatiques |
-| `JAMENDO_CLIENT_ID` | https://devportal.jamendo.com | **facultatif** : la musique marche sans, via Openverse |
 
 Les **clés ElevenLabs** ne se mettent plus dans le `.env` : elles vivent dans le trousseau, bouton **« Clés »** en haut de l'interface (voir plus bas). Une clé encore présente dans `ELEVENLABS_API_KEY` y est reprise automatiquement au premier démarrage.
 
@@ -44,18 +43,14 @@ Le verdict s'affiche en direct sous le moteur ElevenLabs (« Quota suffisant : 9
 
 ### La musique ne vient pas de Pexels
 
-**L'API Pexels ne propose aucun endpoint audio**, uniquement photos et vidéos. Deux sources sont branchées :
+**L'API Pexels ne propose aucun endpoint audio**, uniquement photos et vidéos. Deux voies pour la musique :
 
 | Source | Clé | Ce qu'elle apporte |
 |---|---|---|
-| **Openverse** (défaut) | aucune | agrégateur Creative Commons, marche dès l'ouverture |
-| **Jamendo** | `JAMENDO_CLIENT_ID` gratuit | catalogue musical mieux tenu, filtre instrumental |
+| **Openverse** (recherche intégrée) | aucune | agrégateur Creative Commons, marche dès l'ouverture |
+| **Dépôt manuel** (bouton « Ajouter un fichier ») | aucune | n'importe quel mp3, wav, m4a ou aac à toi : Pixabay, achat, export perso |
 
-Dans les deux cas, seules les licences **CC0** et **CC-BY** sont retenues. Les licences **NC** (non commercial), **ND** (pas de modification) et **SA** (partage à l'identique) sont exclues : elles posent problème sur une chaîne monétisée.
-
-Les pistes CC-BY exigent une attribution. Elle est écrite à côté du fichier dans `public/music/`, reprise dans `out/<slug>.meta.json` et affichée dans l'interface. Colle-la en fin de description YouTube.
-
-Tu peux aussi déposer tes propres fichiers dans `public/music/`.
+Sur Openverse, seules les licences **CC0** et **CC-BY** sont retenues ; l'attribution est écrite à côté du fichier dans `public/music/`, reprise dans `out/<slug>.meta.json` et intégrée à la description prête à coller du bloc Publier. Pour un fichier déposé à la main, les droits relèvent de toi.
 
 ---
 
@@ -73,7 +68,7 @@ Ouvre <http://127.0.0.1:4400> — tout se pilote depuis la page, sans ligne de c
 - **Intonation** : sous chaque beat, la couleur que prendra la voix. Laissé sur « Automatique », le champ affiche ce que l'usine jouera de toute façon.
 - **Voix** : bouton « Changer » dans la colonne Production. Il ouvre d'abord la **sélection amour** : 19 voix retenues pour raconter des histoires de couple, chacune avec une phrase disant ce qu'elle apporte (`pipeline/lib/voices-amour.mjs`). Une bascule donne accès au **catalogue entier** — les voix du compte plus la bibliothèque ElevenLabs, soit plus de 300 voix pour le français seul, filtrables par genre et par recherche libre ; les voix de la sélection y sont marquées d'une étoile. Le bouton ▸ joue l'extrait officiel, gratuitement ; « Sur mon script » fait lire les deux premiers beats de la vidéo ouverte, intonations comprises, pour une centaine de crédits. La voix retenue est enregistrée dans le script : **chaque vidéo a la sienne**.
 - **Ta propre voix** : le fichier est déposé dans `public/audio/<slug>.mp3` et ElevenLabs n'est plus appelé que pour caler le texte dessus.
-- **Musique** : recherche Jamendo par ambiance ou mots-clés, écoute avant de choisir, volume réglable au curseur de 0 à 40 %.
+- **Musique** : recherche Openverse par ambiance ou mots-clés, dépôt d'un fichier à soi, écoute de la piste retenue, volume réglable au curseur de 0 à 40 %.
 - **Production** : les logs du pipeline défilent en direct et le MP4 se lit dans la page une fois prêt.
 - **Thème clair et sombre** : bascule en haut à droite, mémorisée, calée par défaut sur ta préférence système.
 - **Clés ElevenLabs** : bouton « Clés » en haut à droite. Ajout d'une clé (vérifiée auprès d'ElevenLabs avant d'être rangée), retrait en deux clics, quota de chaque compte en barre et total disponible. Le quota du script ouvert est recalculé à l'ouverture, à l'enregistrement et après chaque production.
@@ -116,7 +111,6 @@ npm run render -- mon-script
 | `--media=video` | vidéo uniquement |
 | `--media=photo` | photo uniquement |
 | `--music-mood=romantique` | télécharge une musique (ambiances : romantique, melancolique, calme, piano, cinematique, espoir, tendu) |
-| `--music-provider=jamendo` | change de source musicale (défaut : `openverse`, sans clé) |
 | `--no-music` | aucun fond musical |
 | `--audio=voix.mp3` | utilise ta propre voix off (forced alignment sur le texte du script) |
 | `--music=nom.mp3` | choisit la musique dans `public/music` |
