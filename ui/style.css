@@ -1619,3 +1619,33 @@ input[type='range'] {
 .key-list li {
   border-radius: 10px;
 }
+
+/* Barre de chaine : la ligne editoriale active, au-dessus de la bibliotheque. */
+.channel-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+}
+
+.channel-bar select {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--field-radius);
+  background: var(--field-bg);
+  color: var(--text);
+}
+
+#lib-tab {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+}
+
+#lib-tab .seg-btn {
+  flex: 1;
+}

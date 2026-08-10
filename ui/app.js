@@ -16,6 +16,9 @@ const state = {
   musicAttribution: null,
   mode: 'edit',
   editorView: 'texte', // texte | beats
+  activeChannel: 'amour',
+  libTab: 'scripts', // scripts | history
+  history: [],
   fullTextEdited: false,
   voiceMode: 'tts', // tts | mine | sts
   ttsEngine: 'elevenlabs', // elevenlabs | xtts
@@ -162,6 +165,17 @@ const renderStatus = () => {
   if (xttsBtn) {
     xttsBtn.disabled = !s.xtts;
     xttsBtn.title = s.xtts ? '' : 'XTTS pas encore installé';
+  }
+
+  // Chaines : le selecteur reflete l'etat serveur, une seule chaine active.
+  if (s.channels) {
+    state.activeChannel = s.channels.active;
+    $('channel-select').innerHTML = s.channels.channels
+      .map(
+        (c) =>
+          `<option value="${escapeHtml(c.id)}"${c.id === s.channels.active ? ' selected' : ''}>${escapeHtml(c.name)}</option>`,
+      )
+      .join('');
   }
 
   // La musique choisie doit toujours exister sur le disque.
@@ -350,12 +364,14 @@ $('o-media').addEventListener('change', () => {
 // ---------------------------------------------------------------------------
 const renderScriptList = () => {
   const list = $('script-list');
-  if (state.scripts.length === 0) {
+  // Chaque chaine ne voit que ses scripts.
+  const visibles = state.scripts.filter((s) => (s.channel ?? 'amour') === state.activeChannel);
+  if (visibles.length === 0) {
     list.innerHTML = "<li class=\"hint\" style=\"border:0;padding:0;margin:0\">Aucun script pour l'instant.</li>";
     return;
   }
 
-  list.innerHTML = state.scripts
+  list.innerHTML = visibles
     .map((s) => {
       const meta = s.error
         ? `<span class="s-meta">${escapeHtml(s.error)}</span>`
@@ -704,8 +720,9 @@ const loadPublish = async (slug) => {
     $('pub-title').textContent = meta.title;
     $('pub-description').textContent = meta.description;
     $('pub-tags').textContent = (meta.tags ?? []).join(', ');
+    $('pub-thumbprompt').textContent = meta.thumbnailPrompt ?? '';
     $('pub-thumb').textContent = meta.thumbnailText
-      ? `Texte de miniature suggéré : « ${meta.thumbnailText} »`
+      ? `Texte incrusté dans la miniature : « ${meta.thumbnailText} »`
       : '';
     $('publish').hidden = false;
   } catch {
@@ -865,7 +882,7 @@ const createFromImport = async () => {
     const {slug, beats} = await api('/api/import', {
       method: 'POST',
       headers: {'content-type': 'application/json'},
-      body: JSON.stringify({title, text}),
+      body: JSON.stringify({title, text, channel: state.activeChannel}),
     });
     $('i-title').value = '';
     $('i-text').value = '';
@@ -1276,6 +1293,132 @@ for (const id of ['o-audio', 'o-audio-sts']) {
 $('drop-audio').addEventListener('click', dropVoice);
 $('drop-audio-sts').addEventListener('click', dropVoice);
 
+// Acceleration de la voix deposee : la jauge n'apparait que si on l'active.
+$('o-speed-on').addEventListener('change', () => {
+  $('speed-row').hidden = !$('o-speed-on').checked;
+  renderCounters();
+});
+
+$('o-voice-speed').addEventListener('input', () => {
+  $('speed-value').textContent = `×${(Number($('o-voice-speed').value) / 100).toFixed(2).replace('.', ',')}`;
+});
+
+// ---------------------------------------------------------------------------
+// Chaines et historique
+// ---------------------------------------------------------------------------
+$('channel-select').addEventListener('change', async () => {
+  try {
+    await api('/api/channels/active', {
+      method: 'PUT',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({id: $('channel-select').value}),
+    });
+    state.activeChannel = $('channel-select').value;
+    // Le script ouvert appartient peut-etre a une autre chaine : on repart net.
+    state.slug = null;
+    state.doc = null;
+    markDirty(false);
+    showMode('empty');
+    $('result').hidden = true;
+    $('publish').hidden = true;
+    renderScriptList();
+    renderCounters();
+    loadHistory();
+  } catch (err) {
+    toast(err.message, true);
+  }
+});
+
+$('channel-new').addEventListener('click', () => {
+  const form = $('channel-form');
+  form.hidden = !form.hidden;
+  if (!form.hidden) $('channel-name').focus();
+});
+
+$('channel-cancel').addEventListener('click', () => {
+  $('channel-form').hidden = true;
+  $('channel-name').value = '';
+});
+
+const createChannel = async () => {
+  const name = $('channel-name').value.trim();
+  if (!name) return toast('Donne un nom à la chaîne', true);
+  try {
+    await api('/api/channels', {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({name}),
+    });
+    $('channel-name').value = '';
+    $('channel-form').hidden = true;
+    await loadStatus();
+    renderScriptList();
+    loadHistory();
+    toast(`Chaîne « ${name} » créée et activée`);
+  } catch (err) {
+    toast(err.message, true);
+  }
+};
+
+$('channel-create').addEventListener('click', createChannel);
+$('channel-name').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') createChannel();
+  if (event.key === 'Escape') $('channel-cancel').click();
+});
+
+// Onglets Scripts / Videos produites
+for (const btn of $('lib-tab').querySelectorAll('.seg-btn')) {
+  btn.addEventListener('click', () => {
+    state.libTab = btn.dataset.tab;
+    for (const other of $('lib-tab').querySelectorAll('.seg-btn')) {
+      other.classList.toggle('active', other === btn);
+    }
+    $('script-list').hidden = state.libTab !== 'scripts';
+    $('history-list').hidden = state.libTab !== 'history';
+    if (state.libTab === 'history') loadHistory();
+  });
+}
+
+const renderHistory = () => {
+  const list = $('history-list');
+  if (state.history.length === 0) {
+    list.innerHTML =
+      '<li class="hint" style="border:0;padding:0;margin:0">Aucune vidéo produite sur cette chaîne pour l\'instant.</li>';
+    return;
+  }
+  list.innerHTML = state.history
+    .map(
+      (h, i) => `<li><button data-h="${i}">
+        <span class="s-title">${escapeHtml(h.title)}</span>
+        <span class="s-meta">${new Date(h.at).toLocaleDateString('fr-FR', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'})} · ${h.format === 'long' ? '16:9' : '9:16'}</span>
+      </button></li>`,
+    )
+    .join('');
+
+  for (const button of list.querySelectorAll('[data-h]')) {
+    button.addEventListener('click', () => {
+      const entry = state.history[Number(button.dataset.h)];
+      // La video se recharge dans le lecteur, avec son bloc Publier.
+      const url = `/media/${entry.output}?t=${Date.now()}`;
+      $('player').src = url;
+      $('download').href = url;
+      $('download').setAttribute('download', entry.output);
+      $('result').hidden = false;
+      loadPublish(entry.slug);
+      if (state.scripts.some((s) => s.slug === entry.slug)) openScript(entry.slug);
+    });
+  }
+};
+
+const loadHistory = async () => {
+  try {
+    state.history = await api(`/api/history?channel=${encodeURIComponent(state.activeChannel)}`);
+  } catch {
+    state.history = [];
+  }
+  renderHistory();
+};
+
 // ---------------------------------------------------------------------------
 // Trousseau de cles ElevenLabs
 // ---------------------------------------------------------------------------
@@ -1562,6 +1705,11 @@ const produce = async () => {
         ? state.doc?.voice_id || null
         : null,
     stsVoice: state.voiceMode === 'sts' ? $('o-sts-voice').value || null : null,
+    // Acceleration : uniquement en mode « Ma voix », quand la jauge est activee.
+    voiceSpeed:
+      state.voiceMode === 'mine' && $('o-speed-on').checked
+        ? Number($('o-voice-speed').value) / 100
+        : null,
     forceVoice: $('o-force-voice').checked,
     noMedia: $('o-no-media').checked,
     buildOnly: $('o-build-only').checked,
@@ -1667,6 +1815,7 @@ const createScript = async () => {
       body: JSON.stringify({
         slug,
         title,
+        channel: state.activeChannel,
         hook: '',
         beats: [{text: '', visual_query: ''}],
         youtube: {title, description: '', tags: [], thumbnail_text: ''},
@@ -1776,6 +1925,7 @@ window.addEventListener('beforeunload', (event) => {
     await loadStatus();
     await loadScripts();
     renderCounters();
+    loadHistory();
   } catch (err) {
     toast(err.message, true);
   }

@@ -18,7 +18,10 @@
  */
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
+import {spawn} from 'node:child_process';
+import {RenderInternals} from '@remotion/renderer';
 import {env, requireEnv} from './lib/env.mjs';
 import {forcedAlignment, speechToSpeech} from './lib/elevenlabs.mjs';
 import {estimateCredits, synthesizeVoice, withKey} from './lib/elevenlabs-pool.mjs';
@@ -30,6 +33,7 @@ import {
   TAGGED_MODEL_ID,
   taggedVoiceover,
 } from './lib/emotions.mjs';
+import {buildThumbnailPrompt} from './lib/thumbnail.mjs';
 import {synthesizeToMp3} from './lib/piper.mjs';
 import {synthesizeToMp3 as synthesizeWithXtts} from './lib/xtts.mjs';
 import {alignKnownText, alignWithWhisper} from './lib/whisper.mjs';
@@ -126,8 +130,38 @@ let voiceAttribution = null;
 
 if (flags.audio) {
   // L'utilisateur fournit sa propre voix.
-  const source = path.isAbsolute(flags.audio) ? flags.audio : p(flags.audio);
+  let source = path.isAbsolute(flags.audio) ? flags.audio : p(flags.audio);
   if (!fs.existsSync(source)) fail(`Fichier audio introuvable : ${source}`);
+
+  // Acceleration demandee (jusqu'a x1.5) : atempo change le rythme sans
+  // toucher a la hauteur de la voix. L'alignement des sous-titres se refait
+  // ensuite sur l'audio accelere, rien d'autre a recaler.
+  const voiceSpeed = Math.min(1.5, Math.max(1, Number(flags['voice-speed']) || 1));
+  if (voiceSpeed > 1.001) {
+    log.step(`Accélération de la voix ×${voiceSpeed}`);
+    const ffmpeg = RenderInternals.getExecutablePath({
+      indent: false,
+      logLevel: 'error',
+      type: 'ffmpeg',
+      binariesDirectory: null,
+    });
+    const sped = path.join(os.tmpdir(), `love-voice-speed-${process.pid}.mp3`);
+    await new Promise((resolve, reject) => {
+      const child = spawn(
+        ffmpeg,
+        ['-y', '-i', source, '-filter:a', `atempo=${voiceSpeed}`, '-codec:a', 'libmp3lame', '-q:a', '3', sped],
+        {windowsHide: true},
+      );
+      let err = '';
+      child.stderr.on('data', (d) => (err += d.toString()));
+      child.on('error', reject);
+      child.on('close', (code) =>
+        code === 0 ? resolve() : reject(new Error(`Accélération échouée : ${err.slice(-200)}`)),
+      );
+    });
+    source = sped;
+    log.ok(`Voix accélérée ×${voiceSpeed}`);
+  }
 
   if (flags['sts-voice']) {
     // Speech-to-speech : on garde l'intonation, on plaque une autre voix.
@@ -678,4 +712,6 @@ writeJson(path.join(outDir, `${slug}.meta.json`), {
   // A coller en fin de description YouTube : les licences CC-BY l'exigent.
   musicAttribution,
   voiceAttribution,
+  // Pret a coller dans ChatGPT : la miniature incarne la peur du spectateur.
+  thumbnailPrompt: buildThumbnailPrompt(script),
 });

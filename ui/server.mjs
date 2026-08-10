@@ -31,6 +31,7 @@ import {
 } from '../pipeline/lib/emotions.mjs';
 import {checkQuota, estimateCredits, quotaSnapshot, withKey} from '../pipeline/lib/elevenlabs-pool.mjs';
 import {curatedInfo, CURATED_IDS, CURATED_VOICES} from '../pipeline/lib/voices-amour.mjs';
+import {buildThumbnailPrompt} from '../pipeline/lib/thumbnail.mjs';
 import {remapBeats, segmentScript} from '../pipeline/lib/segment.mjs';
 import {ensureDir, p, parseArgs, readJson, slugify} from '../pipeline/lib/utils.mjs';
 import {isWhisperInstalled} from '../pipeline/lib/whisper.mjs';
@@ -144,6 +145,38 @@ const readBody = (req) =>
   });
 
 // ---------------------------------------------------------------------------
+// Chaines et historique des videos produites
+// ---------------------------------------------------------------------------
+const CHANNELS_FILE = p('channels.json');
+const HISTORY_FILE = p('history.json');
+
+const defaultChannels = () => ({channels: [{id: 'amour', name: 'Chaîne amour'}], active: 'amour'});
+
+const readChannels = () => {
+  try {
+    const d = readJson(CHANNELS_FILE);
+    if (Array.isArray(d.channels) && d.channels.length > 0 && d.channels.every((c) => c.id && c.name)) {
+      if (!d.channels.some((c) => c.id === d.active)) d.active = d.channels[0].id;
+      return d;
+    }
+  } catch {
+    // fichier absent ou illisible : on repart du defaut
+  }
+  return defaultChannels();
+};
+
+const writeChannels = (d) => fs.writeFileSync(CHANNELS_FILE, JSON.stringify(d, null, 2), 'utf8');
+
+const readHistory = () => {
+  try {
+    const h = readJson(HISTORY_FILE);
+    return Array.isArray(h) ? h : [];
+  } catch {
+    return [];
+  }
+};
+
+// ---------------------------------------------------------------------------
 // Etat des jobs de production
 // ---------------------------------------------------------------------------
 const jobs = new Map();
@@ -229,6 +262,11 @@ const startJob = async (job) => {
     if (raw) {
       buildArgs.push(`--audio=${raw}`, `--sts-voice=${job.stsVoice}`);
     }
+  } else if (job.voiceSpeed) {
+    // Acceleration de la voix deposee : on repart du fichier brut, build.mjs
+    // fabrique la version acceleree et recale les sous-titres dessus.
+    const raw = rawVoiceFile(job.slug);
+    if (raw) buildArgs.push(`--audio=${raw}`, `--voice-speed=${job.voiceSpeed}`);
   }
 
   broadcast(job, {type: 'phase', phase: 'build'});
@@ -270,6 +308,23 @@ const startJob = async (job) => {
 
   job.status = 'done';
   job.output = `${job.slug}.${job.format}.mp4`;
+
+  // Chaque video produite entre dans l'historique de sa chaine.
+  try {
+    const doc = readJson(p('scripts', `${job.slug}.json`));
+    const entry = {
+      at: new Date().toISOString(),
+      slug: job.slug,
+      channel: doc.channel ?? 'amour',
+      title: doc.title ?? job.slug,
+      format: job.format,
+      output: job.output,
+    };
+    fs.writeFileSync(HISTORY_FILE, JSON.stringify([entry, ...readHistory()].slice(0, 500), null, 2), 'utf8');
+  } catch {
+    // l'historique ne doit jamais faire echouer une production
+  }
+
   broadcast(job, {type: 'end', status: 'done', output: job.output});
 };
 
@@ -294,6 +349,7 @@ const listScripts = () => {
         return {
           slug,
           title: data.title ?? slug,
+          channel: data.channel ?? 'amour',
           beats: beats.length,
           words,
           estimatedSeconds: Math.round(words / 2.5),
@@ -304,7 +360,7 @@ const listScripts = () => {
             .map((f2) => `${slug}.${f2}.mp4`),
         };
       } catch (err) {
-        return {slug, title: slug, error: `JSON invalide : ${err.message}`};
+        return {slug, title: slug, channel: 'amour', error: `JSON invalide : ${err.message}`};
       }
     })
     .sort((a, b) => a.slug.localeCompare(b.slug));
@@ -358,6 +414,7 @@ const projectStatus = () => {
     emotions: Object.entries(EMOTIONS).map(([id, e]) => ({id, label: e.label, tag: e.tag})),
     music,
     moods: Object.keys(MOODS),
+    channels: readChannels(),
     busy: [...jobs.values()].some((j) => j.status === 'running'),
   };
 };
@@ -618,6 +675,7 @@ const server = http.createServer(async (req, res) => {
           {
             slug,
             title,
+            channel: String(body.channel ?? readChannels().active),
             hook: beats[0]?.text ?? '',
             beats: beats.map((b) => ({text: b.text, visual_query: b.visual_query})),
             youtube: {title, description: '', tags: [], thumbnail_text: ''},
@@ -828,6 +886,38 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, resolveEmotions(beats));
     }
 
+    // --- chaines : plusieurs lignes editoriales dans le meme outil ---
+    if (route === '/api/channels' && req.method === 'GET') {
+      return json(res, 200, readChannels());
+    }
+    if (route === '/api/channels' && req.method === 'POST') {
+      const body = JSON.parse((await readBody(req)).toString('utf8'));
+      const name = String(body.name ?? '').trim();
+      if (!name) return json(res, 400, {error: 'Donne un nom à la chaîne'});
+      const id = slugify(name);
+      if (!SLUG_OK.test(id)) return json(res, 400, {error: 'Nom inutilisable'});
+      const d = readChannels();
+      if (!d.channels.some((c) => c.id === id)) d.channels.push({id, name});
+      d.active = id;
+      writeChannels(d);
+      return json(res, 201, d);
+    }
+    if (route === '/api/channels/active' && req.method === 'PUT') {
+      const body = JSON.parse((await readBody(req)).toString('utf8'));
+      const d = readChannels();
+      if (!d.channels.some((c) => c.id === body.id)) return json(res, 404, {error: 'Chaîne inconnue'});
+      d.active = body.id;
+      writeChannels(d);
+      return json(res, 200, d);
+    }
+
+    // --- historique des videos produites, par chaine ---
+    if (route === '/api/history' && req.method === 'GET') {
+      const channel = url.searchParams.get('channel');
+      const entries = readHistory().filter((e) => !channel || e.channel === channel);
+      return json(res, 200, entries.slice(0, 100));
+    }
+
     // --- cles simples reglables depuis l'interface ---
     if (route === '/api/env-keys' && req.method === 'POST') {
       const body = JSON.parse((await readBody(req)).toString('utf8'));
@@ -998,6 +1088,11 @@ const server = http.createServer(async (req, res) => {
           typeof body.stsVoice === 'string' && body.stsVoice && rawVoiceFile(slug)
             ? body.stsVoice
             : null,
+        // Vitesse de la voix deposee : bornee cote serveur, x1.05 a x1.5.
+        voiceSpeed: (() => {
+          const v = Number(body.voiceSpeed);
+          return Number.isFinite(v) && v >= 1.01 && v <= 1.5 ? Math.round(v * 100) / 100 : null;
+        })(),
         align: ['whisper', 'elevenlabs'].includes(body.align) ? body.align : null,
         forceVoice: Boolean(body.forceVoice),
         noMedia: Boolean(body.noMedia),
@@ -1067,11 +1162,19 @@ const server = http.createServer(async (req, res) => {
       }
       if (credits.length > 0) blocs.push(credits.join('\n'));
 
+      // Les meta.json produits avant l'arrivee du prompt de miniature n'en ont
+      // pas : on le reconstruit depuis le script, meme doctrine.
+      const scriptFile = p('scripts', `${slug}.json`);
+      const thumbnailPrompt =
+        meta.thumbnailPrompt ??
+        (fs.existsSync(scriptFile) ? buildThumbnailPrompt(readJson(scriptFile)) : '');
+
       return json(res, 200, {
         title: meta.youtube?.title ?? meta.title ?? slug,
         description: blocs.filter(Boolean).join('\n\n'),
         tags: meta.youtube?.tags ?? [],
         thumbnailText: meta.youtube?.thumbnail_text ?? '',
+        thumbnailPrompt,
         durationSeconds: meta.durationSeconds ?? null,
         format: meta.format ?? 'short',
       });

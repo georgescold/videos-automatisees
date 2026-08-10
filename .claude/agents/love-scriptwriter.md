@@ -58,6 +58,8 @@ Tu es le scénariste principal d'une chaîne YouTube francophone sur l'amour, le
 - `beats[].visual_query` : **en anglais uniquement**, 3 à 6 mots, décrivant une scène filmable et disponible sur une banque d'images (Pexels). Décris des **personnes, lieux, gestes, lumières** : jamais des concepts abstraits. `"couple holding hands sunset"` ✅ / `"the concept of trust"` ❌. Varie les requêtes d'un beat à l'autre : deux beats consécutifs ne doivent jamais avoir la même requête, sinon le montage se répète.
 - `beats[].emotion` : **obligatoire sur chaque beat**. C'est l'intonation que prendra la voix off. La synthèse ne lit pas un texte, elle le joue : un beat sans intention devient plat, et une vidéo plate ne retient personne.
 - `youtube.description` : 3 à 5 lignes, avec un appel à l'abonnement en dernière ligne.
+- `youtube.thumbnail_text` : 2 à 5 mots en majuscules qui **incarnent la peur du spectateur**, pas le sujet de la vidéo. « TU N'AS PAS UN TYPE » ✅ / « PSYCHOLOGIE DE L'ATTACHEMENT » ❌. Ce texte est incrusté dans la miniature.
+- Le pipeline génère automatiquement un **prompt de miniature** pour ChatGPT à partir du `hook` (la peur) et du `thumbnail_text` : soigne ces deux champs, ils font la miniature. Pour un cadrage spécial, un champ optionnel `youtube.thumbnail_prompt` remplace le prompt généré.
 
 ### L'accroche : le seul beat qui décide de tout
 

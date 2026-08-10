@@ -57,6 +57,19 @@
           </div>
         </div>
 
+        <div class="channel-bar">
+          <select id="channel-select" title="Chaîne active"></select>
+          <button class="icon-btn tiny" id="channel-new" title="Créer une chaîne">+</button>
+        </div>
+
+        <div class="inset" id="channel-form" hidden>
+          <input type="text" id="channel-name" placeholder="Nom de la nouvelle chaîne" />
+          <div class="row-actions end">
+            <button class="btn btn-ghost small" id="channel-cancel">Annuler</button>
+            <button class="btn small" id="channel-create">Créer</button>
+          </div>
+        </div>
+
         <div class="inset" id="new-form" hidden>
           <input type="text" id="new-title" placeholder="Titre de la vidéo" />
           <div class="row-actions end">
@@ -65,7 +78,13 @@
           </div>
         </div>
 
+        <div class="seg small-seg" id="lib-tab">
+          <button type="button" class="seg-btn active" data-tab="scripts">Scripts</button>
+          <button type="button" class="seg-btn" data-tab="history">Vidéos produites</button>
+        </div>
+
         <ul class="script-list" id="script-list"></ul>
+        <ul class="script-list" id="history-list" hidden></ul>
 
         <p class="hint">
           Pour qu'un script s'écrive tout seul, demande à Claude&nbsp;:
@@ -334,6 +353,15 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
                 </label>
                 <button class="btn btn-ghost danger small" id="drop-audio" hidden>Retirer</button>
               </div>
+              <label class="check">
+                <input type="checkbox" id="o-speed-on" />
+                <span>Accélérer ma voix</span>
+                <span class="info" tabindex="0" title="Accélère ton enregistrement sans changer la hauteur de la voix, jusqu'à ×1,5. Les sous-titres sont recalés sur l'audio accéléré, et la vidéo raccourcit d'autant. Un débit légèrement accéléré (×1,1 à ×1,25) retient mieux l'attention sur les formats courts.">i</span>
+              </label>
+              <label class="slider-row" id="speed-row" hidden>
+                <span>Vitesse <b id="speed-value">×1,25</b></span>
+                <input type="range" id="o-voice-speed" min="105" max="150" step="5" value="125" />
+              </label>
               <p class="note" id="align-note">Sous-titres calés en local par transcription. Aucune clé requise.</p>
             </div>
 
@@ -439,6 +467,11 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             <div class="pub-head"><span>Tags</span>
               <button class="btn btn-ghost small" data-copy="pub-tags">Copier</button></div>
             <p class="pub-text" id="pub-tags"></p>
+          </div>
+          <div class="pub-item">
+            <div class="pub-head"><span>Prompt miniature <small>(à coller dans ChatGPT)</small></span>
+              <button class="btn btn-ghost small" data-copy="pub-thumbprompt">Copier</button></div>
+            <p class="pub-text pub-clamp" id="pub-thumbprompt"></p>
           </div>
           <p class="note" id="pub-thumb"></p>
         </div>

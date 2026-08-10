@@ -8,6 +8,9 @@ out/
 .env
 .keys.json
 .keys.json.invalide
+# Donnees locales de l'utilisateur : chaines et historique de production
+channels.json
+history.json
 public/audio/
 public/images/
 public/videos/
