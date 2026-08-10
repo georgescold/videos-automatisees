@@ -15,18 +15,15 @@
   <body>
     <header class="topbar">
       <div class="brand">
-        <!-- Ruby heart : coeur facette low-poly, symbole de la marque. -->
-        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M12 21.4 2.9 12.2C1.1 9.6 2.6 5 6.6 4.5c2.2-.3 4 .9 5.4 2.4 1.4-1.5 3.2-2.7 5.4-2.4 4 .5 5.5 5.1 3.7 7.7z"
-            fill="#8B2D4A"
-          />
-          <path d="M12 6.9v14.5L2.9 12.2z" fill="#7A0016" opacity=".5" />
-          <path d="M12 6.9 6.6 4.5 2.9 12.2z" fill="#B5001F" opacity=".4" />
-          <path d="m12 6.9 9.1 5.3-3.7-7.7z" fill="#FFFFFF" opacity=".2" />
-        </svg>
+        <!-- Ruby heart Compaatible, en tuile : le fond blanc du PNG devient un cadre assume. -->
+        <img class="logo" src="/logo.png" alt="Compaatible" />
         <h1>Usine à vidéos</h1>
-        <span class="brand-sub">Chaîne amour</span>
+        <!-- La chaine active est le contexte de tout l'outil : elle vit ici,
+             changeable a tout moment, pas enterree dans une colonne. -->
+        <div class="channel-pick">
+          <select id="channel-select" title="Chaîne active"></select>
+          <button class="icon-btn tiny" id="channel-new" title="Créer une chaîne">+</button>
+        </div>
       </div>
 
       <div class="topbar-right">
@@ -54,19 +51,6 @@
           <div class="row-actions tight">
             <button class="btn btn-ghost small" id="import-script">Importer</button>
             <button class="btn btn-ghost small" id="new-script">Nouveau</button>
-          </div>
-        </div>
-
-        <div class="channel-bar">
-          <select id="channel-select" title="Chaîne active"></select>
-          <button class="icon-btn tiny" id="channel-new" title="Créer une chaîne">+</button>
-        </div>
-
-        <div class="inset" id="channel-form" hidden>
-          <input type="text" id="channel-name" placeholder="Nom de la nouvelle chaîne" />
-          <div class="row-actions end">
-            <button class="btn btn-ghost small" id="channel-cancel">Annuler</button>
-            <button class="btn small" id="channel-create">Créer</button>
           </div>
         </div>
 
@@ -533,6 +517,25 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             erronée ne se verra qu'à la première recherche de visuels.
           </p>
         </div>
+      </div>
+    </div>
+
+    <!-- Nouvelle chaîne : une autre ligne éditoriale dans le même outil -->
+    <div class="overlay" id="channel-overlay" hidden>
+      <div class="modal">
+        <div class="panel-head">
+          <h2>Nouvelle chaîne</h2>
+          <button class="icon-btn tiny" id="channel-cancel" title="Fermer" aria-label="Fermer">×</button>
+        </div>
+        <p class="note">
+          Chaque chaîne a ses scripts et son historique de vidéos.
+          Les clés, les voix et les musiques restent partagées.
+        </p>
+        <label class="field">
+          <span>Nom de la chaîne</span>
+          <input type="text" id="channel-name" placeholder="Motivation, Sommeil, Histoire…" autocomplete="off" />
+        </label>
+        <button class="btn small wide" id="channel-create">Créer et activer</button>
       </div>
     </div>
 

@@ -1330,14 +1330,17 @@ $('channel-select').addEventListener('change', async () => {
 });
 
 $('channel-new').addEventListener('click', () => {
-  const form = $('channel-form');
-  form.hidden = !form.hidden;
-  if (!form.hidden) $('channel-name').focus();
+  $('channel-overlay').hidden = false;
+  $('channel-name').focus();
 });
 
 $('channel-cancel').addEventListener('click', () => {
-  $('channel-form').hidden = true;
+  $('channel-overlay').hidden = true;
   $('channel-name').value = '';
+});
+
+$('channel-overlay').addEventListener('click', (event) => {
+  if (event.target === $('channel-overlay')) $('channel-overlay').hidden = true;
 });
 
 const createChannel = async () => {
@@ -1350,7 +1353,7 @@ const createChannel = async () => {
       body: JSON.stringify({name}),
     });
     $('channel-name').value = '';
-    $('channel-form').hidden = true;
+    $('channel-overlay').hidden = true;
     await loadStatus();
     renderScriptList();
     loadHistory();
@@ -1900,7 +1903,10 @@ $('o-force-voice').addEventListener('change', () => {
 $('produce').addEventListener('click', produce);
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !$('keys-overlay').hidden) $('keys-overlay').hidden = true;
+  if (event.key !== 'Escape') return;
+  for (const id of ['keys-overlay', 'voices-overlay', 'channel-overlay']) {
+    if (!$(id).hidden) $(id).hidden = true;
+  }
 });
 
 $('stop').addEventListener('click', async () => {

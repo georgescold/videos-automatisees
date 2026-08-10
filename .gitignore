@@ -11,6 +11,8 @@ out/
 # Donnees locales de l'utilisateur : chaines et historique de production
 channels.json
 history.json
+# Assets bruts de la marque : le logo utilise est copie dans ui/logo.png
+doc compaatible/
 public/audio/
 public/images/
 public/videos/

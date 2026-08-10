@@ -112,6 +112,7 @@ const MIME = {
   '.m4a': 'audio/mp4',
   '.aac': 'audio/aac',
   '.svg': 'image/svg+xml',
+  '.png': 'image/png',
 };
 
 const ANSI = /\[[0-9;]*m/g;
@@ -617,7 +618,7 @@ const server = http.createServer(async (req, res) => {
     if (route === '/' || route === '/index.html') {
       return serveStatic(res, path.join(UI_DIR, 'index.html'));
     }
-    if (route === '/app.js' || route === '/style.css') {
+    if (route === '/app.js' || route === '/style.css' || route === '/logo.png') {
       return serveStatic(res, path.join(UI_DIR, route.slice(1)));
     }
 
