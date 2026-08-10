@@ -2,6 +2,9 @@
   "name": "love-channel-factory",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "description": "Chaine YouTube 'amour' automatisee : script -> voix ElevenLabs -> images Pexels -> montage Remotion -> MP4",
   "scripts": {
     "ui": "node ui/server.mjs",

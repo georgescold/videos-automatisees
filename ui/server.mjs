@@ -20,6 +20,7 @@ import {
   publicKeys,
   removeElevenLabsKey,
   renameElevenLabsKey,
+  setEnvKey,
 } from '../pipeline/lib/keys.mjs';
 import {getQuota} from '../pipeline/lib/elevenlabs.mjs';
 import {
@@ -817,6 +818,33 @@ const server = http.createServer(async (req, res) => {
       const doc = readJson(file);
       const beats = Array.isArray(doc.beats) ? doc.beats : [];
       return json(res, 200, resolveEmotions(beats));
+    }
+
+    // --- cles simples (Pexels, Jamendo) reglables depuis l'interface ---
+    if (route === '/api/env-keys' && req.method === 'POST') {
+      const body = JSON.parse((await readBody(req)).toString('utf8'));
+      const autorisees = {PEXELS_API_KEY: 'Pexels', JAMENDO_CLIENT_ID: 'Jamendo'};
+      const name = String(body.name ?? '');
+      if (!Object.hasOwn(autorisees, name)) return json(res, 400, {error: 'Clé inconnue'});
+
+      const value = String(body.value ?? '').trim();
+
+      // Pas de verification aupres de Pexels : teste le 10/08/2026, leur API
+      // sert les resultats et renvoie les memes en-tetes de quota avec une
+      // cle inventee. Un controle qui accepte tout vaut moins que pas de
+      // controle du tout. On se limite donc a la forme.
+      if (value && !/^[A-Za-z0-9]{20,80}$/.test(value)) {
+        return json(res, 400, {
+          error: 'Format inattendu : une clé Pexels est une longue suite de lettres et de chiffres.',
+        });
+      }
+
+      try {
+        setEnvKey(name, value);
+      } catch (err) {
+        return json(res, 400, {error: err.message});
+      }
+      return json(res, 200, {ok: true, service: autorisees[name], set: value.length > 0});
     }
 
     // --- verification du quota pour un script donne ---

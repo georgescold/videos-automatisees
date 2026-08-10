@@ -164,3 +164,39 @@ export const renameElevenLabsKey = (id, label) => {
 };
 
 export const KEYS_FILE = FILE;
+
+// ---------------------------------------------------------------------------
+// Cles simples du .env (Pexels, Jamendo)
+// ---------------------------------------------------------------------------
+const ENV_FILE = p('.env');
+
+/**
+ * Ecrit une cle dans le .env sans toucher au reste du fichier : commentaires,
+ * ordre et autres reglages sont conserves. Sans l'interface, il fallait
+ * ouvrir le fichier a la main, ce qui bloquait toute installation neuve.
+ */
+export const setEnvKey = (name, value) => {
+  if (!/^[A-Z][A-Z0-9_]*$/.test(name)) throw new Error('Nom de variable invalide.');
+  const clean = String(value ?? '').trim();
+  if (/[\r\n]/.test(clean)) throw new Error('Valeur invalide.');
+
+  const source = fs.existsSync(ENV_FILE)
+    ? fs.readFileSync(ENV_FILE, 'utf8')
+    : fs.existsSync(p('.env.example'))
+      ? fs.readFileSync(p('.env.example'), 'utf8')
+      : '';
+
+  const lignes = source.split(/\r?\n/);
+  const motif = new RegExp(`^\\s*${name}\\s*=`);
+  const index = lignes.findIndex((l) => motif.test(l));
+
+  if (index === -1) lignes.push(`${name}=${clean}`);
+  else lignes[index] = `${name}=${clean}`;
+
+  fs.writeFileSync(ENV_FILE, lignes.join('\n'), 'utf8');
+  // Le processus en cours doit voir la nouvelle valeur sans redemarrage.
+  process.env[name] = clean;
+  return true;
+};
+
+export const envKey = (name) => String(process.env[name] ?? '').trim();

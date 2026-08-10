@@ -1251,6 +1251,33 @@ const addKey = async () => {
 };
 
 $('key-add').addEventListener('click', addKey);
+
+// Les cles simples du .env : Pexels et Jamendo, reglables sans ouvrir de
+// fichier. C'est ce qui manquait pour qu'une installation neuve soit
+// utilisable sans passer par l'editeur de texte.
+for (const button of document.querySelectorAll('[data-env]')) {
+  button.addEventListener('click', async () => {
+    const name = button.dataset.env;
+    const input = name === 'PEXELS_API_KEY' ? $('env-pexels') : $('env-jamendo');
+    button.disabled = true;
+    button.textContent = '…';
+    try {
+      const r = await api('/api/env-keys', {
+        method: 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify({name, value: input.value.trim()}),
+      });
+      input.value = '';
+      await loadStatus();
+      toast(r.set ? `Clé ${r.service} enregistrée` : `Clé ${r.service} retirée`);
+    } catch (err) {
+      toast(err.message, true);
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Enregistrer';
+    }
+  });
+}
 $('key-value').addEventListener('keydown', (event) => {
   if (event.key === 'Enter') addKey();
 });

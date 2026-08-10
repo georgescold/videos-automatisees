@@ -432,6 +432,30 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             racine du projet. Ce fichier reste sur ta machine et n'est jamais versionné.
           </p>
         </div>
+
+        <div class="group">
+          <div class="group-head"><h3>Les autres clés</h3></div>
+          <label class="field">
+            <span>Pexels <small>(visuels automatiques, indispensable)</small></span>
+            <div class="voice-pick">
+              <input type="text" id="env-pexels" placeholder="colle ta clé Pexels" autocomplete="off" />
+              <button class="btn small" data-env="PEXELS_API_KEY">Enregistrer</button>
+            </div>
+          </label>
+          <label class="field">
+            <span>Jamendo <small>(facultatif : la musique marche sans, via Openverse)</small></span>
+            <div class="voice-pick">
+              <input type="text" id="env-jamendo" placeholder="identifiant client Jamendo" autocomplete="off" />
+              <button class="btn small" data-env="JAMENDO_CLIENT_ID">Enregistrer</button>
+            </div>
+          </label>
+          <p class="note">
+            Clé Pexels gratuite sur <code>pexels.com/api/new</code>. Elle est écrite dans le
+            fichier <code>.env</code>, lui aussi jamais versionné. Contrairement à ElevenLabs,
+            Pexels ne permet pas de vérifier une clé : seule sa forme est contrôlée, une clé
+            erronée ne se verra qu'à la première recherche de visuels.
+          </p>
+        </div>
       </div>
     </div>
 

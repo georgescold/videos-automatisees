@@ -3,6 +3,15 @@ import {p, fail} from './utils.mjs';
 
 const envFile = p('.env');
 
+// Depot fraichement clone : le .env n'est pas versionne (il porte des cles).
+// On le cree depuis le modele plutot que de laisser l'utilisateur decouvrir
+// tout seul pourquoi rien ne marche. Lancer.bat le fait aussi, mais on ne
+// passe pas toujours par lui.
+const modele = p('.env.example');
+if (!fs.existsSync(envFile) && fs.existsSync(modele)) {
+  fs.copyFileSync(modele, envFile);
+}
+
 if (fs.existsSync(envFile)) {
   for (const line of fs.readFileSync(envFile, 'utf8').split(/\r?\n/)) {
     const trimmed = line.trim();
