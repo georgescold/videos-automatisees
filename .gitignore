@@ -1,0 +1,16 @@
+node_modules/
+out/
+
+# Paquets de competences installes : reinstallables depuis skills-lock.json,
+# et ce n'est pas notre code. On garde nos propres agents (.claude/agents).
+.agents/skills/
+.claude/skills/
+.env
+.keys.json
+.keys.json.invalide
+public/audio/
+public/images/
+public/videos/
+build/
+.remotion/
+*.log

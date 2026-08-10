@@ -1,0 +1,3236 @@
+{
+  "title": "Pourquoi tu attires toujours le même type de personne",
+  "hook": "Tu n'as pas un type. Tu as une blessure qui reconnaît sa propre langue.",
+  "audioSrc": "audio/pourquoi-tu-attires-le-meme-type.mp3",
+  "musicSrc": "music/zero-project - Disabled emotions suite - Part 1.mp3",
+  "musicVolume": 0.1,
+  "voiceVolume": 1,
+  "captionPages": [
+    {
+      "startMs": 69,
+      "endMs": 533,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 69,
+          "toMs": 80
+        },
+        {
+          "text": "crois",
+          "fromMs": 120,
+          "toMs": 320
+        },
+        {
+          "text": "que",
+          "fromMs": 360,
+          "toMs": 480
+        }
+      ]
+    },
+    {
+      "startMs": 533,
+      "endMs": 1280,
+      "tokens": [
+        {
+          "text": "tu",
+          "fromMs": 533,
+          "toMs": 640
+        },
+        {
+          "text": "as",
+          "fromMs": 693,
+          "toMs": 800
+        },
+        {
+          "text": "juste",
+          "fromMs": 867,
+          "toMs": 1200
+        }
+      ]
+    },
+    {
+      "startMs": 1280,
+      "endMs": 1973,
+      "tokens": [
+        {
+          "text": "mauvais",
+          "fromMs": 1280,
+          "toMs": 1680
+        },
+        {
+          "text": "goût",
+          "fromMs": 1707,
+          "toMs": 1920
+        }
+      ]
+    },
+    {
+      "startMs": 1973,
+      "endMs": 2980,
+      "tokens": [
+        {
+          "text": "en",
+          "fromMs": 1973,
+          "toMs": 2080
+        },
+        {
+          "text": "amour",
+          "fromMs": 2173,
+          "toMs": 2720
+        }
+      ]
+    },
+    {
+      "startMs": 3982,
+      "endMs": 4440,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 3982,
+          "toMs": 4000
+        },
+        {
+          "text": "n'as",
+          "fromMs": 4040,
+          "toMs": 4240
+        },
+        {
+          "text": "pas",
+          "fromMs": 4280,
+          "toMs": 4400
+        }
+      ]
+    },
+    {
+      "startMs": 4440,
+      "endMs": 5600,
+      "tokens": [
+        {
+          "text": "mauvais",
+          "fromMs": 4440,
+          "toMs": 4720
+        },
+        {
+          "text": "goût",
+          "fromMs": 4747,
+          "toMs": 5440
+        }
+      ]
+    },
+    {
+      "startMs": 5600,
+      "endMs": 6040,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 5600,
+          "toMs": 5920
+        },
+        {
+          "text": "as",
+          "fromMs": 5947,
+          "toMs": 6000
+        }
+      ]
+    },
+    {
+      "startMs": 6040,
+      "endMs": 7140,
+      "tokens": [
+        {
+          "text": "une",
+          "fromMs": 6040,
+          "toMs": 6160
+        },
+        {
+          "text": "mémoire",
+          "fromMs": 6240,
+          "toMs": 6880
+        }
+      ]
+    },
+    {
+      "startMs": 8147,
+      "endMs": 8947,
+      "tokens": [
+        {
+          "text": "Et",
+          "fromMs": 8147,
+          "toMs": 8160
+        },
+        {
+          "text": "cette",
+          "fromMs": 8200,
+          "toMs": 8400
+        },
+        {
+          "text": "mémoire",
+          "fromMs": 8480,
+          "toMs": 8880
+        }
+      ]
+    },
+    {
+      "startMs": 8947,
+      "endMs": 9840,
+      "tokens": [
+        {
+          "text": "choisit",
+          "fromMs": 8947,
+          "toMs": 9440
+        },
+        {
+          "text": "à",
+          "fromMs": 9480,
+          "toMs": 9520
+        },
+        {
+          "text": "ta",
+          "fromMs": 9600,
+          "toMs": 9760
+        }
+      ]
+    },
+    {
+      "startMs": 9840,
+      "endMs": 11140,
+      "tokens": [
+        {
+          "text": "place",
+          "fromMs": 9840,
+          "toMs": 10320
+        },
+        {
+          "text": "bien",
+          "fromMs": 10416,
+          "toMs": 10800
+        },
+        {
+          "text": "avant",
+          "fromMs": 10853,
+          "toMs": 11120
+        }
+      ]
+    },
+    {
+      "startMs": 11140,
+      "endMs": 11560,
+      "tokens": [
+        {
+          "text": "que",
+          "fromMs": 11140,
+          "toMs": 11200
+        },
+        {
+          "text": "tu",
+          "fromMs": 11253,
+          "toMs": 11360
+        },
+        {
+          "text": "aies",
+          "fromMs": 11400,
+          "toMs": 11520
+        }
+      ]
+    },
+    {
+      "startMs": 11560,
+      "endMs": 12740,
+      "tokens": [
+        {
+          "text": "dit",
+          "fromMs": 11560,
+          "toMs": 11680
+        },
+        {
+          "text": "bonjour",
+          "fromMs": 11740,
+          "toMs": 12480
+        }
+      ]
+    },
+    {
+      "startMs": 14145,
+      "endMs": 14760,
+      "tokens": [
+        {
+          "text": "Ton",
+          "fromMs": 14145,
+          "toMs": 14160
+        },
+        {
+          "text": "cerveau",
+          "fromMs": 14240,
+          "toMs": 14560
+        },
+        {
+          "text": "ne",
+          "fromMs": 14613,
+          "toMs": 14720
+        }
+      ]
+    },
+    {
+      "startMs": 14760,
+      "endMs": 15300,
+      "tokens": [
+        {
+          "text": "cherche",
+          "fromMs": 14760,
+          "toMs": 15040
+        },
+        {
+          "text": "pas",
+          "fromMs": 15060,
+          "toMs": 15120
+        },
+        {
+          "text": "ce",
+          "fromMs": 15173,
+          "toMs": 15280
+        }
+      ]
+    },
+    {
+      "startMs": 15300,
+      "endMs": 15744,
+      "tokens": [
+        {
+          "text": "qui",
+          "fromMs": 15300,
+          "toMs": 15360
+        },
+        {
+          "text": "est",
+          "fromMs": 15400,
+          "toMs": 15520
+        },
+        {
+          "text": "bon",
+          "fromMs": 15560,
+          "toMs": 15680
+        }
+      ]
+    },
+    {
+      "startMs": 15744,
+      "endMs": 16580,
+      "tokens": [
+        {
+          "text": "pour",
+          "fromMs": 15744,
+          "toMs": 16000
+        },
+        {
+          "text": "toi",
+          "fromMs": 16060,
+          "toMs": 16320
+        }
+      ]
+    },
+    {
+      "startMs": 16640,
+      "endMs": 17880,
+      "tokens": [
+        {
+          "text": "Il",
+          "fromMs": 16640,
+          "toMs": 17280
+        },
+        {
+          "text": "cherche",
+          "fromMs": 17330,
+          "toMs": 17680
+        },
+        {
+          "text": "ce",
+          "fromMs": 17733,
+          "toMs": 17840
+        }
+      ]
+    },
+    {
+      "startMs": 17880,
+      "endMs": 18900,
+      "tokens": [
+        {
+          "text": "qui",
+          "fromMs": 17880,
+          "toMs": 18000
+        },
+        {
+          "text": "est",
+          "fromMs": 18020,
+          "toMs": 18080
+        },
+        {
+          "text": "connu",
+          "fromMs": 18128,
+          "toMs": 18640
+        }
+      ]
+    },
+    {
+      "startMs": 20549,
+      "endMs": 20768,
+      "tokens": [
+        {
+          "text": "Ce",
+          "fromMs": 20549,
+          "toMs": 20560
+        },
+        {
+          "text": "qui",
+          "fromMs": 20580,
+          "toMs": 20640
+        },
+        {
+          "text": "est",
+          "fromMs": 20660,
+          "toMs": 20720
+        }
+      ]
+    },
+    {
+      "startMs": 20768,
+      "endMs": 22100,
+      "tokens": [
+        {
+          "text": "connu",
+          "fromMs": 20768,
+          "toMs": 21760
+        },
+        {
+          "text": "il",
+          "fromMs": 21813,
+          "toMs": 21920
+        },
+        {
+          "text": "l'a",
+          "fromMs": 21960,
+          "toMs": 22080
+        }
+      ]
+    },
+    {
+      "startMs": 22100,
+      "endMs": 23253,
+      "tokens": [
+        {
+          "text": "appris",
+          "fromMs": 22100,
+          "toMs": 22320
+        },
+        {
+          "text": "très",
+          "fromMs": 22368,
+          "toMs": 22560
+        },
+        {
+          "text": "tôt",
+          "fromMs": 22600,
+          "toMs": 23200
+        }
+      ]
+    },
+    {
+      "startMs": 23253,
+      "endMs": 23970,
+      "tokens": [
+        {
+          "text": "en",
+          "fromMs": 23253,
+          "toMs": 23360
+        },
+        {
+          "text": "regardant",
+          "fromMs": 23406,
+          "toMs": 23760
+        },
+        {
+          "text": "les",
+          "fromMs": 23800,
+          "toMs": 23920
+        }
+      ]
+    },
+    {
+      "startMs": 23970,
+      "endMs": 24520,
+      "tokens": [
+        {
+          "text": "adultes",
+          "fromMs": 23970,
+          "toMs": 24320
+        },
+        {
+          "text": "qui",
+          "fromMs": 24360,
+          "toMs": 24480
+        }
+      ]
+    },
+    {
+      "startMs": 24520,
+      "endMs": 25380,
+      "tokens": [
+        {
+          "text": "t'ont",
+          "fromMs": 24520,
+          "toMs": 24640
+        },
+        {
+          "text": "élevé",
+          "fromMs": 24720,
+          "toMs": 25120
+        }
+      ]
+    },
+    {
+      "startMs": 26542,
+      "endMs": 27080,
+      "tokens": [
+        {
+          "text": "Il",
+          "fromMs": 26542,
+          "toMs": 26560
+        },
+        {
+          "text": "a",
+          "fromMs": 26600,
+          "toMs": 26640
+        },
+        {
+          "text": "retenu",
+          "fromMs": 26700,
+          "toMs": 27040
+        }
+      ]
+    },
+    {
+      "startMs": 27080,
+      "endMs": 27584,
+      "tokens": [
+        {
+          "text": "comment",
+          "fromMs": 27080,
+          "toMs": 27360
+        },
+        {
+          "text": "on",
+          "fromMs": 27387,
+          "toMs": 27440
+        },
+        {
+          "text": "te",
+          "fromMs": 27467,
+          "toMs": 27520
+        }
+      ]
+    },
+    {
+      "startMs": 27584,
+      "endMs": 28347,
+      "tokens": [
+        {
+          "text": "parlait",
+          "fromMs": 27584,
+          "toMs": 28000
+        },
+        {
+          "text": "quand",
+          "fromMs": 28027,
+          "toMs": 28160
+        },
+        {
+          "text": "tu",
+          "fromMs": 28213,
+          "toMs": 28320
+        }
+      ]
+    },
+    {
+      "startMs": 28347,
+      "endMs": 29340,
+      "tokens": [
+        {
+          "text": "avais",
+          "fromMs": 28347,
+          "toMs": 28560
+        },
+        {
+          "text": "peur",
+          "fromMs": 28613,
+          "toMs": 29120
+        }
+      ]
+    },
+    {
+      "startMs": 29340,
+      "endMs": 30980,
+      "tokens": [
+        {
+          "text": "Qui",
+          "fromMs": 29340,
+          "toMs": 30000
+        },
+        {
+          "text": "revenait",
+          "fromMs": 30067,
+          "toMs": 30760
+        },
+        {
+          "text": "et",
+          "fromMs": 30827,
+          "toMs": 30960
+        }
+      ]
+    },
+    {
+      "startMs": 30980,
+      "endMs": 31240,
+      "tokens": [
+        {
+          "text": "qui",
+          "fromMs": 30980,
+          "toMs": 31040
+        },
+        {
+          "text": "ne",
+          "fromMs": 31093,
+          "toMs": 31200
+        }
+      ]
+    },
+    {
+      "startMs": 31240,
+      "endMs": 32100,
+      "tokens": [
+        {
+          "text": "revenait",
+          "fromMs": 31240,
+          "toMs": 31600
+        },
+        {
+          "text": "pas",
+          "fromMs": 31640,
+          "toMs": 31840
+        }
+      ]
+    },
+    {
+      "startMs": 33267,
+      "endMs": 33552,
+      "tokens": [
+        {
+          "text": "Il",
+          "fromMs": 33267,
+          "toMs": 33280
+        },
+        {
+          "text": "en",
+          "fromMs": 33333,
+          "toMs": 33440
+        },
+        {
+          "text": "a",
+          "fromMs": 33480,
+          "toMs": 33520
+        }
+      ]
+    },
+    {
+      "startMs": 33552,
+      "endMs": 34773,
+      "tokens": [
+        {
+          "text": "fait",
+          "fromMs": 33552,
+          "toMs": 33680
+        },
+        {
+          "text": "une",
+          "fromMs": 33720,
+          "toMs": 33840
+        },
+        {
+          "text": "carte",
+          "fromMs": 33933,
+          "toMs": 34560
+        }
+      ]
+    },
+    {
+      "startMs": 34773,
+      "endMs": 36987,
+      "tokens": [
+        {
+          "text": "Cette",
+          "fromMs": 34773,
+          "toMs": 35840
+        },
+        {
+          "text": "carte",
+          "fromMs": 35907,
+          "toMs": 36320
+        },
+        {
+          "text": "c'est",
+          "fromMs": 36600,
+          "toMs": 36960
+        }
+      ]
+    },
+    {
+      "startMs": 36987,
+      "endMs": 37320,
+      "tokens": [
+        {
+          "text": "ce",
+          "fromMs": 36987,
+          "toMs": 37040
+        },
+        {
+          "text": "que",
+          "fromMs": 37060,
+          "toMs": 37120
+        },
+        {
+          "text": "tu",
+          "fromMs": 37173,
+          "toMs": 37280
+        }
+      ]
+    },
+    {
+      "startMs": 37320,
+      "endMs": 38980,
+      "tokens": [
+        {
+          "text": "appelles",
+          "fromMs": 37320,
+          "toMs": 37760
+        },
+        {
+          "text": "ton",
+          "fromMs": 37860,
+          "toMs": 38160
+        },
+        {
+          "text": "type",
+          "fromMs": 38240,
+          "toMs": 38720
+        }
+      ]
+    },
+    {
+      "startMs": 40357,
+      "endMs": 40827,
+      "tokens": [
+        {
+          "text": "Mais",
+          "fromMs": 40357,
+          "toMs": 40400
+        },
+        {
+          "text": "une",
+          "fromMs": 40420,
+          "toMs": 40480
+        },
+        {
+          "text": "carte",
+          "fromMs": 40533,
+          "toMs": 40800
+        }
+      ]
+    },
+    {
+      "startMs": 40827,
+      "endMs": 41493,
+      "tokens": [
+        {
+          "text": "ne",
+          "fromMs": 40827,
+          "toMs": 40880
+        },
+        {
+          "text": "dit",
+          "fromMs": 40940,
+          "toMs": 41120
+        },
+        {
+          "text": "jamais",
+          "fromMs": 41166,
+          "toMs": 41440
+        }
+      ]
+    },
+    {
+      "startMs": 41493,
+      "endMs": 42800,
+      "tokens": [
+        {
+          "text": "où",
+          "fromMs": 41493,
+          "toMs": 41600
+        },
+        {
+          "text": "c'est",
+          "fromMs": 41640,
+          "toMs": 41840
+        },
+        {
+          "text": "bon",
+          "fromMs": 41900,
+          "toMs": 42680
+        }
+      ]
+    },
+    {
+      "startMs": 42800,
+      "endMs": 43920,
+      "tokens": [
+        {
+          "text": "Elle",
+          "fromMs": 42800,
+          "toMs": 43280
+        },
+        {
+          "text": "dit",
+          "fromMs": 43320,
+          "toMs": 43440
+        },
+        {
+          "text": "seulement",
+          "fromMs": 43480,
+          "toMs": 43840
+        }
+      ]
+    },
+    {
+      "startMs": 43920,
+      "endMs": 44384,
+      "tokens": [
+        {
+          "text": "où",
+          "fromMs": 43920,
+          "toMs": 44080
+        },
+        {
+          "text": "c'est",
+          "fromMs": 44120,
+          "toMs": 44320
+        }
+      ]
+    },
+    {
+      "startMs": 44384,
+      "endMs": 45380,
+      "tokens": [
+        {
+          "text": "déjà",
+          "fromMs": 44384,
+          "toMs": 44640
+        },
+        {
+          "text": "passé",
+          "fromMs": 44707,
+          "toMs": 45120
+        }
+      ]
+    },
+    {
+      "startMs": 47013,
+      "endMs": 47653,
+      "tokens": [
+        {
+          "text": "Alors",
+          "fromMs": 47013,
+          "toMs": 47120
+        },
+        {
+          "text": "quand",
+          "fromMs": 47147,
+          "toMs": 47280
+        },
+        {
+          "text": "quelqu'un",
+          "fromMs": 47328,
+          "toMs": 47600
+        }
+      ]
+    },
+    {
+      "startMs": 47653,
+      "endMs": 49312,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 47653,
+          "toMs": 47760
+        },
+        {
+          "text": "calme",
+          "fromMs": 47840,
+          "toMs": 48240
+        },
+        {
+          "text": "arrive",
+          "fromMs": 48297,
+          "toMs": 49280
+        }
+      ]
+    },
+    {
+      "startMs": 49312,
+      "endMs": 50347,
+      "tokens": [
+        {
+          "text": "quelqu'un",
+          "fromMs": 49312,
+          "toMs": 49600
+        },
+        {
+          "text": "de",
+          "fromMs": 49627,
+          "toMs": 49680
+        },
+        {
+          "text": "stable",
+          "fromMs": 49760,
+          "toMs": 50320
+        }
+      ]
+    },
+    {
+      "startMs": 50347,
+      "endMs": 52187,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 50347,
+          "toMs": 50400
+        },
+        {
+          "text": "disponible",
+          "fromMs": 50465,
+          "toMs": 51200
+        },
+        {
+          "text": "tu",
+          "fromMs": 51520,
+          "toMs": 52160
+        }
+      ]
+    },
+    {
+      "startMs": 52187,
+      "endMs": 53220,
+      "tokens": [
+        {
+          "text": "ne",
+          "fromMs": 52187,
+          "toMs": 52240
+        },
+        {
+          "text": "ressens",
+          "fromMs": 52300,
+          "toMs": 52640
+        },
+        {
+          "text": "rien",
+          "fromMs": 52688,
+          "toMs": 52960
+        }
+      ]
+    },
+    {
+      "startMs": 54148,
+      "endMs": 55120,
+      "tokens": [
+        {
+          "text": "Pas",
+          "fromMs": 54148,
+          "toMs": 54160
+        },
+        {
+          "text": "de",
+          "fromMs": 54187,
+          "toMs": 54240
+        },
+        {
+          "text": "vertige",
+          "fromMs": 54304,
+          "toMs": 54960
+        }
+      ]
+    },
+    {
+      "startMs": 55120,
+      "endMs": 56600,
+      "tokens": [
+        {
+          "text": "Pas",
+          "fromMs": 55120,
+          "toMs": 55600
+        },
+        {
+          "text": "d'attente",
+          "fromMs": 55640,
+          "toMs": 56400
+        }
+      ]
+    },
+    {
+      "startMs": 56600,
+      "endMs": 57696,
+      "tokens": [
+        {
+          "text": "Pas",
+          "fromMs": 56600,
+          "toMs": 57200
+        },
+        {
+          "text": "ce",
+          "fromMs": 57253,
+          "toMs": 57360
+        },
+        {
+          "text": "noeud",
+          "fromMs": 57400,
+          "toMs": 57680
+        }
+      ]
+    },
+    {
+      "startMs": 57696,
+      "endMs": 58740,
+      "tokens": [
+        {
+          "text": "dans",
+          "fromMs": 57696,
+          "toMs": 57760
+        },
+        {
+          "text": "le",
+          "fromMs": 57813,
+          "toMs": 57920
+        },
+        {
+          "text": "ventre",
+          "fromMs": 57984,
+          "toMs": 58480
+        }
+      ]
+    },
+    {
+      "startMs": 59902,
+      "endMs": 60267,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 59902,
+          "toMs": 59920
+        },
+        {
+          "text": "appelles",
+          "fromMs": 59960,
+          "toMs": 60240
+        }
+      ]
+    },
+    {
+      "startMs": 60267,
+      "endMs": 62053,
+      "tokens": [
+        {
+          "text": "ça",
+          "fromMs": 60267,
+          "toMs": 60320
+        },
+        {
+          "text": "l'ennui",
+          "fromMs": 60400,
+          "toMs": 61800
+        }
+      ]
+    },
+    {
+      "startMs": 62053,
+      "endMs": 62933,
+      "tokens": [
+        {
+          "text": "Ce",
+          "fromMs": 62053,
+          "toMs": 62560
+        },
+        {
+          "text": "n'est",
+          "fromMs": 62600,
+          "toMs": 62720
+        },
+        {
+          "text": "pas",
+          "fromMs": 62760,
+          "toMs": 62880
+        }
+      ]
+    },
+    {
+      "startMs": 62933,
+      "endMs": 64120,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 62933,
+          "toMs": 63040
+        },
+        {
+          "text": "l'ennui",
+          "fromMs": 63080,
+          "toMs": 64080
+        }
+      ]
+    },
+    {
+      "startMs": 64120,
+      "endMs": 65627,
+      "tokens": [
+        {
+          "text": "c'est",
+          "fromMs": 64120,
+          "toMs": 64240
+        },
+        {
+          "text": "du",
+          "fromMs": 64267,
+          "toMs": 64320
+        },
+        {
+          "text": "calme",
+          "fromMs": 64420,
+          "toMs": 65600
+        }
+      ]
+    },
+    {
+      "startMs": 65627,
+      "endMs": 65947,
+      "tokens": [
+        {
+          "text": "et",
+          "fromMs": 65627,
+          "toMs": 65680
+        },
+        {
+          "text": "tu",
+          "fromMs": 65733,
+          "toMs": 65840
+        },
+        {
+          "text": "ne",
+          "fromMs": 65867,
+          "toMs": 65920
+        }
+      ]
+    },
+    {
+      "startMs": 65947,
+      "endMs": 67060,
+      "tokens": [
+        {
+          "text": "le",
+          "fromMs": 65947,
+          "toMs": 66000
+        },
+        {
+          "text": "reconnais",
+          "fromMs": 66080,
+          "toMs": 66560
+        },
+        {
+          "text": "pas",
+          "fromMs": 66600,
+          "toMs": 66800
+        }
+      ]
+    },
+    {
+      "startMs": 68462,
+      "endMs": 69093,
+      "tokens": [
+        {
+          "text": "Le",
+          "fromMs": 68462,
+          "toMs": 68480
+        },
+        {
+          "text": "vertige",
+          "fromMs": 68544,
+          "toMs": 68960
+        },
+        {
+          "text": "que",
+          "fromMs": 68980,
+          "toMs": 69040
+        }
+      ]
+    },
+    {
+      "startMs": 69093,
+      "endMs": 70120,
+      "tokens": [
+        {
+          "text": "tu",
+          "fromMs": 69093,
+          "toMs": 69200
+        },
+        {
+          "text": "cherches",
+          "fromMs": 69264,
+          "toMs": 69920
+        },
+        {
+          "text": "ce",
+          "fromMs": 69973,
+          "toMs": 70080
+        }
+      ]
+    },
+    {
+      "startMs": 70120,
+      "endMs": 70427,
+      "tokens": [
+        {
+          "text": "n'est",
+          "fromMs": 70120,
+          "toMs": 70240
+        },
+        {
+          "text": "pas",
+          "fromMs": 70280,
+          "toMs": 70400
+        }
+      ]
+    },
+    {
+      "startMs": 70427,
+      "endMs": 71380,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 70427,
+          "toMs": 70480
+        },
+        {
+          "text": "l'amour",
+          "fromMs": 70520,
+          "toMs": 71120
+        }
+      ]
+    },
+    {
+      "startMs": 71520,
+      "endMs": 73380,
+      "tokens": [
+        {
+          "text": "C'est",
+          "fromMs": 71520,
+          "toMs": 72080
+        },
+        {
+          "text": "de",
+          "fromMs": 72107,
+          "toMs": 72160
+        },
+        {
+          "text": "l'incertitude",
+          "fromMs": 72200,
+          "toMs": 73120
+        }
+      ]
+    },
+    {
+      "startMs": 74690,
+      "endMs": 75547,
+      "tokens": [
+        {
+          "text": "Ton",
+          "fromMs": 74690,
+          "toMs": 74720
+        },
+        {
+          "text": "corps",
+          "fromMs": 74773,
+          "toMs": 75040
+        },
+        {
+          "text": "confond",
+          "fromMs": 75104,
+          "toMs": 75520
+        }
+      ]
+    },
+    {
+      "startMs": 75547,
+      "endMs": 76120,
+      "tokens": [
+        {
+          "text": "le",
+          "fromMs": 75547,
+          "toMs": 75600
+        },
+        {
+          "text": "trac",
+          "fromMs": 75680,
+          "toMs": 76000
+        },
+        {
+          "text": "de",
+          "fromMs": 76027,
+          "toMs": 76080
+        }
+      ]
+    },
+    {
+      "startMs": 76120,
+      "endMs": 77307,
+      "tokens": [
+        {
+          "text": "l'attente",
+          "fromMs": 76120,
+          "toMs": 76880
+        },
+        {
+          "text": "avec",
+          "fromMs": 76960,
+          "toMs": 77280
+        }
+      ]
+    },
+    {
+      "startMs": 77307,
+      "endMs": 79180,
+      "tokens": [
+        {
+          "text": "le",
+          "fromMs": 77307,
+          "toMs": 77360
+        },
+        {
+          "text": "désir",
+          "fromMs": 77440,
+          "toMs": 78920
+        }
+      ]
+    },
+    {
+      "startMs": 79911,
+      "endMs": 80613,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 79911,
+          "toMs": 79920
+        },
+        {
+          "text": "te",
+          "fromMs": 79973,
+          "toMs": 80080
+        },
+        {
+          "text": "reconnais",
+          "fromMs": 80133,
+          "toMs": 80560
+        }
+      ]
+    },
+    {
+      "startMs": 80613,
+      "endMs": 81240,
+      "tokens": [
+        {
+          "text": "si",
+          "fromMs": 80613,
+          "toMs": 80720
+        },
+        {
+          "text": "tu",
+          "fromMs": 80773,
+          "toMs": 80880
+        },
+        {
+          "text": "relis",
+          "fromMs": 80940,
+          "toMs": 81200
+        }
+      ]
+    },
+    {
+      "startMs": 81240,
+      "endMs": 82027,
+      "tokens": [
+        {
+          "text": "ses",
+          "fromMs": 81240,
+          "toMs": 81360
+        },
+        {
+          "text": "messages",
+          "fromMs": 81413,
+          "toMs": 81840
+        },
+        {
+          "text": "avant",
+          "fromMs": 81867,
+          "toMs": 82000
+        }
+      ]
+    },
+    {
+      "startMs": 82027,
+      "endMs": 83493,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 82027,
+          "toMs": 82080
+        },
+        {
+          "text": "les",
+          "fromMs": 82120,
+          "toMs": 82240
+        },
+        {
+          "text": "envoyer",
+          "fromMs": 82280,
+          "toMs": 83440
+        }
+      ]
+    },
+    {
+      "startMs": 83493,
+      "endMs": 83890,
+      "tokens": [
+        {
+          "text": "et",
+          "fromMs": 83493,
+          "toMs": 83600
+        },
+        {
+          "text": "si",
+          "fromMs": 83627,
+          "toMs": 83680
+        },
+        {
+          "text": "tu",
+          "fromMs": 83733,
+          "toMs": 83840
+        }
+      ]
+    },
+    {
+      "startMs": 83890,
+      "endMs": 84832,
+      "tokens": [
+        {
+          "text": "attends",
+          "fromMs": 83890,
+          "toMs": 84240
+        },
+        {
+          "text": "sa",
+          "fromMs": 84267,
+          "toMs": 84320
+        },
+        {
+          "text": "réponse",
+          "fromMs": 84380,
+          "toMs": 84800
+        }
+      ]
+    },
+    {
+      "startMs": 84832,
+      "endMs": 86020,
+      "tokens": [
+        {
+          "text": "pour",
+          "fromMs": 84832,
+          "toMs": 84960
+        },
+        {
+          "text": "respirer",
+          "fromMs": 85029,
+          "toMs": 85760
+        }
+      ]
+    },
+    {
+      "startMs": 87342,
+      "endMs": 87893,
+      "tokens": [
+        {
+          "text": "Si",
+          "fromMs": 87342,
+          "toMs": 87360
+        },
+        {
+          "text": "tu",
+          "fromMs": 87413,
+          "toMs": 87520
+        },
+        {
+          "text": "appelles",
+          "fromMs": 87580,
+          "toMs": 87840
+        }
+      ]
+    },
+    {
+      "startMs": 87893,
+      "endMs": 88390,
+      "tokens": [
+        {
+          "text": "ça",
+          "fromMs": 87893,
+          "toMs": 88000
+        },
+        {
+          "text": "de",
+          "fromMs": 88053,
+          "toMs": 88160
+        },
+        {
+          "text": "la",
+          "fromMs": 88213,
+          "toMs": 88320
+        }
+      ]
+    },
+    {
+      "startMs": 88390,
+      "endMs": 89900,
+      "tokens": [
+        {
+          "text": "passion",
+          "fromMs": 88390,
+          "toMs": 89520
+        },
+        {
+          "text": "alors",
+          "fromMs": 89560,
+          "toMs": 89760
+        },
+        {
+          "text": "que",
+          "fromMs": 89780,
+          "toMs": 89840
+        }
+      ]
+    },
+    {
+      "startMs": 89900,
+      "endMs": 91320,
+      "tokens": [
+        {
+          "text": "ton",
+          "fromMs": 89900,
+          "toMs": 90080
+        },
+        {
+          "text": "corps",
+          "fromMs": 90147,
+          "toMs": 90560
+        },
+        {
+          "text": "lui",
+          "fromMs": 90620,
+          "toMs": 91280
+        }
+      ]
+    },
+    {
+      "startMs": 91320,
+      "endMs": 91893,
+      "tokens": [
+        {
+          "text": "appelle",
+          "fromMs": 91320,
+          "toMs": 91600
+        },
+        {
+          "text": "ça",
+          "fromMs": 91653,
+          "toMs": 91760
+        },
+        {
+          "text": "de",
+          "fromMs": 91787,
+          "toMs": 91840
+        }
+      ]
+    },
+    {
+      "startMs": 91893,
+      "endMs": 92900,
+      "tokens": [
+        {
+          "text": "la",
+          "fromMs": 91893,
+          "toMs": 92000
+        },
+        {
+          "text": "peur",
+          "fromMs": 92080,
+          "toMs": 92640
+        }
+      ]
+    },
+    {
+      "startMs": 94048,
+      "endMs": 94600,
+      "tokens": [
+        {
+          "text": "Plus",
+          "fromMs": 94048,
+          "toMs": 94080
+        },
+        {
+          "text": "la",
+          "fromMs": 94133,
+          "toMs": 94240
+        },
+        {
+          "text": "personne",
+          "fromMs": 94276,
+          "toMs": 94560
+        }
+      ]
+    },
+    {
+      "startMs": 94600,
+      "endMs": 96352,
+      "tokens": [
+        {
+          "text": "est",
+          "fromMs": 94600,
+          "toMs": 94720
+        },
+        {
+          "text": "imprévisible",
+          "fromMs": 94768,
+          "toMs": 96080
+        },
+        {
+          "text": "plus",
+          "fromMs": 96128,
+          "toMs": 96320
+        }
+      ]
+    },
+    {
+      "startMs": 96352,
+      "endMs": 96608,
+      "tokens": [
+        {
+          "text": "elle",
+          "fromMs": 96352,
+          "toMs": 96480
+        },
+        {
+          "text": "te",
+          "fromMs": 96507,
+          "toMs": 96560
+        }
+      ]
+    },
+    {
+      "startMs": 96608,
+      "endMs": 98020,
+      "tokens": [
+        {
+          "text": "paraît",
+          "fromMs": 96608,
+          "toMs": 96880
+        },
+        {
+          "text": "fascinante",
+          "fromMs": 96944,
+          "toMs": 97760
+        }
+      ]
+    },
+    {
+      "startMs": 99262,
+      "endMs": 99640,
+      "tokens": [
+        {
+          "text": "Ce",
+          "fromMs": 99262,
+          "toMs": 99280
+        },
+        {
+          "text": "n'est",
+          "fromMs": 99320,
+          "toMs": 99440
+        },
+        {
+          "text": "pas",
+          "fromMs": 99480,
+          "toMs": 99600
+        }
+      ]
+    },
+    {
+      "startMs": 99640,
+      "endMs": 101140,
+      "tokens": [
+        {
+          "text": "une",
+          "fromMs": 99640,
+          "toMs": 99760
+        },
+        {
+          "text": "preuve",
+          "fromMs": 99800,
+          "toMs": 100000
+        },
+        {
+          "text": "d'intensité",
+          "fromMs": 100040,
+          "toMs": 100880
+        }
+      ]
+    },
+    {
+      "startMs": 101320,
+      "endMs": 102467,
+      "tokens": [
+        {
+          "text": "C'est",
+          "fromMs": 101320,
+          "toMs": 101840
+        },
+        {
+          "text": "ton",
+          "fromMs": 101880,
+          "toMs": 102000
+        },
+        {
+          "text": "système",
+          "fromMs": 102050,
+          "toMs": 102400
+        }
+      ]
+    },
+    {
+      "startMs": 102467,
+      "endMs": 103940,
+      "tokens": [
+        {
+          "text": "nerveux",
+          "fromMs": 102467,
+          "toMs": 102880
+        },
+        {
+          "text": "en",
+          "fromMs": 102933,
+          "toMs": 103040
+        },
+        {
+          "text": "alerte",
+          "fromMs": 103120,
+          "toMs": 103680
+        }
+      ]
+    },
+    {
+      "startMs": 105027,
+      "endMs": 105726,
+      "tokens": [
+        {
+          "text": "Alors",
+          "fromMs": 105027,
+          "toMs": 105120
+        },
+        {
+          "text": "voilà",
+          "fromMs": 105173,
+          "toMs": 105440
+        },
+        {
+          "text": "trois",
+          "fromMs": 105480,
+          "toMs": 105680
+        }
+      ]
+    },
+    {
+      "startMs": 105726,
+      "endMs": 106810,
+      "tokens": [
+        {
+          "text": "choses",
+          "fromMs": 105726,
+          "toMs": 106000
+        },
+        {
+          "text": "à",
+          "fromMs": 106040,
+          "toMs": 106080
+        },
+        {
+          "text": "faire",
+          "fromMs": 106160,
+          "toMs": 106760
+        }
+      ]
+    },
+    {
+      "startMs": 106810,
+      "endMs": 108020,
+      "tokens": [
+        {
+          "text": "dès",
+          "fromMs": 106810,
+          "toMs": 106960
+        },
+        {
+          "text": "cette",
+          "fromMs": 107000,
+          "toMs": 107200
+        },
+        {
+          "text": "semaine",
+          "fromMs": 107260,
+          "toMs": 107760
+        }
+      ]
+    },
+    {
+      "startMs": 108750,
+      "endMs": 110296,
+      "tokens": [
+        {
+          "text": "La",
+          "fromMs": 108750,
+          "toMs": 108803
+        },
+        {
+          "text": "première",
+          "fromMs": 108865,
+          "toMs": 110243
+        }
+      ]
+    },
+    {
+      "startMs": 110296,
+      "endMs": 111243,
+      "tokens": [
+        {
+          "text": "ne",
+          "fromMs": 110296,
+          "toMs": 110403
+        },
+        {
+          "text": "juge",
+          "fromMs": 110483,
+          "toMs": 110803
+        },
+        {
+          "text": "jamais",
+          "fromMs": 110860,
+          "toMs": 111203
+        }
+      ]
+    },
+    {
+      "startMs": 111243,
+      "endMs": 112323,
+      "tokens": [
+        {
+          "text": "une",
+          "fromMs": 111243,
+          "toMs": 111363
+        },
+        {
+          "text": "personne",
+          "fromMs": 111407,
+          "toMs": 111763
+        },
+        {
+          "text": "calme",
+          "fromMs": 111843,
+          "toMs": 112243
+        }
+      ]
+    },
+    {
+      "startMs": 112323,
+      "endMs": 112863,
+      "tokens": [
+        {
+          "text": "avant",
+          "fromMs": 112323,
+          "toMs": 112723
+        },
+        {
+          "text": "le",
+          "fromMs": 112750,
+          "toMs": 112803
+        }
+      ]
+    },
+    {
+      "startMs": 112863,
+      "endMs": 114183,
+      "tokens": [
+        {
+          "text": "troisième",
+          "fromMs": 112863,
+          "toMs": 113363
+        },
+        {
+          "text": "rendez-vous",
+          "fromMs": 113409,
+          "toMs": 113923
+        }
+      ]
+    },
+    {
+      "startMs": 115188,
+      "endMs": 115672,
+      "tokens": [
+        {
+          "text": "Ton",
+          "fromMs": 115188,
+          "toMs": 115203
+        },
+        {
+          "text": "corps",
+          "fromMs": 115256,
+          "toMs": 115523
+        },
+        {
+          "text": "a",
+          "fromMs": 115563,
+          "toMs": 115603
+        }
+      ]
+    },
+    {
+      "startMs": 115672,
+      "endMs": 116563,
+      "tokens": [
+        {
+          "text": "besoin",
+          "fromMs": 115672,
+          "toMs": 116083
+        },
+        {
+          "text": "de",
+          "fromMs": 116110,
+          "toMs": 116163
+        },
+        {
+          "text": "trois",
+          "fromMs": 116216,
+          "toMs": 116483
+        }
+      ]
+    },
+    {
+      "startMs": 116563,
+      "endMs": 117630,
+      "tokens": [
+        {
+          "text": "fois",
+          "fromMs": 116563,
+          "toMs": 116883
+        },
+        {
+          "text": "pour",
+          "fromMs": 116963,
+          "toMs": 117283
+        },
+        {
+          "text": "cesser",
+          "fromMs": 117323,
+          "toMs": 117603
+        }
+      ]
+    },
+    {
+      "startMs": 117630,
+      "endMs": 118110,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 117630,
+          "toMs": 117683
+        },
+        {
+          "text": "chercher",
+          "fromMs": 117715,
+          "toMs": 118083
+        }
+      ]
+    },
+    {
+      "startMs": 118110,
+      "endMs": 118903,
+      "tokens": [
+        {
+          "text": "le",
+          "fromMs": 118110,
+          "toMs": 118163
+        },
+        {
+          "text": "danger",
+          "fromMs": 118220,
+          "toMs": 118643
+        }
+      ]
+    },
+    {
+      "startMs": 120296,
+      "endMs": 121833,
+      "tokens": [
+        {
+          "text": "La",
+          "fromMs": 120296,
+          "toMs": 120323
+        },
+        {
+          "text": "deuxième",
+          "fromMs": 120371,
+          "toMs": 121763
+        }
+      ]
+    },
+    {
+      "startMs": 121833,
+      "endMs": 122696,
+      "tokens": [
+        {
+          "text": "observe",
+          "fromMs": 121833,
+          "toMs": 122323
+        },
+        {
+          "text": "ce",
+          "fromMs": 122376,
+          "toMs": 122483
+        },
+        {
+          "text": "que",
+          "fromMs": 122523,
+          "toMs": 122643
+        }
+      ]
+    },
+    {
+      "startMs": 122696,
+      "endMs": 124216,
+      "tokens": [
+        {
+          "text": "tu",
+          "fromMs": 122696,
+          "toMs": 122803
+        },
+        {
+          "text": "fais",
+          "fromMs": 122867,
+          "toMs": 123203
+        },
+        {
+          "text": "pas",
+          "fromMs": 123443,
+          "toMs": 124163
+        }
+      ]
+    },
+    {
+      "startMs": 124216,
+      "endMs": 124456,
+      "tokens": [
+        {
+          "text": "ce",
+          "fromMs": 124216,
+          "toMs": 124323
+        },
+        {
+          "text": "que",
+          "fromMs": 124343,
+          "toMs": 124403
+        }
+      ]
+    },
+    {
+      "startMs": 124456,
+      "endMs": 125383,
+      "tokens": [
+        {
+          "text": "tu",
+          "fromMs": 124456,
+          "toMs": 124563
+        },
+        {
+          "text": "ressens",
+          "fromMs": 124643,
+          "toMs": 125123
+        }
+      ]
+    },
+    {
+      "startMs": 126708,
+      "endMs": 127083,
+      "tokens": [
+        {
+          "text": "Est-ce",
+          "fromMs": 126708,
+          "toMs": 126803
+        },
+        {
+          "text": "que",
+          "fromMs": 126823,
+          "toMs": 126883
+        },
+        {
+          "text": "tu",
+          "fromMs": 126936,
+          "toMs": 127043
+        }
+      ]
+    },
+    {
+      "startMs": 127083,
+      "endMs": 128503,
+      "tokens": [
+        {
+          "text": "t'excuses",
+          "fromMs": 127083,
+          "toMs": 127603
+        },
+        {
+          "text": "plus",
+          "fromMs": 127651,
+          "toMs": 127843
+        },
+        {
+          "text": "souvent ?",
+          "fromMs": 127883,
+          "toMs": 128243
+        }
+      ]
+    },
+    {
+      "startMs": 128523,
+      "endMs": 129813,
+      "tokens": [
+        {
+          "text": "Est-ce",
+          "fromMs": 128523,
+          "toMs": 129443
+        },
+        {
+          "text": "que",
+          "fromMs": 129463,
+          "toMs": 129523
+        },
+        {
+          "text": "tu",
+          "fromMs": 129603,
+          "toMs": 129763
+        }
+      ]
+    },
+    {
+      "startMs": 129813,
+      "endMs": 130856,
+      "tokens": [
+        {
+          "text": "attends",
+          "fromMs": 129813,
+          "toMs": 130163
+        },
+        {
+          "text": "plus",
+          "fromMs": 130259,
+          "toMs": 130643
+        },
+        {
+          "text": "que",
+          "fromMs": 130683,
+          "toMs": 130803
+        }
+      ]
+    },
+    {
+      "startMs": 130856,
+      "endMs": 131703,
+      "tokens": [
+        {
+          "text": "tu",
+          "fromMs": 130856,
+          "toMs": 130963
+        },
+        {
+          "text": "ne",
+          "fromMs": 130990,
+          "toMs": 131043
+        },
+        {
+          "text": "vis ?",
+          "fromMs": 131123,
+          "toMs": 131443
+        }
+      ]
+    },
+    {
+      "startMs": 133185,
+      "endMs": 134670,
+      "tokens": [
+        {
+          "text": "La",
+          "fromMs": 133185,
+          "toMs": 133203
+        },
+        {
+          "text": "troisième",
+          "fromMs": 133243,
+          "toMs": 134643
+        }
+      ]
+    },
+    {
+      "startMs": 134670,
+      "endMs": 135416,
+      "tokens": [
+        {
+          "text": "quand",
+          "fromMs": 134670,
+          "toMs": 134803
+        },
+        {
+          "text": "ton",
+          "fromMs": 134843,
+          "toMs": 134963
+        },
+        {
+          "text": "ventre",
+          "fromMs": 135027,
+          "toMs": 135363
+        }
+      ]
+    },
+    {
+      "startMs": 135416,
+      "endMs": 136523,
+      "tokens": [
+        {
+          "text": "se",
+          "fromMs": 135416,
+          "toMs": 135523
+        },
+        {
+          "text": "serre",
+          "fromMs": 135623,
+          "toMs": 136323
+        },
+        {
+          "text": "ne",
+          "fromMs": 136376,
+          "toMs": 136483
+        }
+      ]
+    },
+    {
+      "startMs": 136523,
+      "endMs": 137003,
+      "tokens": [
+        {
+          "text": "dis",
+          "fromMs": 136523,
+          "toMs": 136643
+        },
+        {
+          "text": "pas",
+          "fromMs": 136683,
+          "toMs": 136803
+        },
+        {
+          "text": "que",
+          "fromMs": 136843,
+          "toMs": 136963
+        }
+      ]
+    },
+    {
+      "startMs": 137003,
+      "endMs": 138103,
+      "tokens": [
+        {
+          "text": "c'est",
+          "fromMs": 137003,
+          "toMs": 137123
+        },
+        {
+          "text": "de",
+          "fromMs": 137150,
+          "toMs": 137203
+        },
+        {
+          "text": "l'amour",
+          "fromMs": 137243,
+          "toMs": 137843
+        }
+      ]
+    },
+    {
+      "startMs": 139013,
+      "endMs": 139743,
+      "tokens": [
+        {
+          "text": "Une",
+          "fromMs": 139013,
+          "toMs": 139043
+        },
+        {
+          "text": "alarme",
+          "fromMs": 139110,
+          "toMs": 139523
+        },
+        {
+          "text": "n'est",
+          "fromMs": 139563,
+          "toMs": 139683
+        }
+      ]
+    },
+    {
+      "startMs": 139743,
+      "endMs": 140903,
+      "tokens": [
+        {
+          "text": "pas",
+          "fromMs": 139743,
+          "toMs": 139923
+        },
+        {
+          "text": "un",
+          "fromMs": 139950,
+          "toMs": 140003
+        },
+        {
+          "text": "papillon",
+          "fromMs": 140063,
+          "toMs": 140643
+        }
+      ]
+    },
+    {
+      "startMs": 141023,
+      "endMs": 142670,
+      "tokens": [
+        {
+          "text": "Apprends",
+          "fromMs": 141023,
+          "toMs": 142323
+        },
+        {
+          "text": "à",
+          "fromMs": 142403,
+          "toMs": 142483
+        },
+        {
+          "text": "faire",
+          "fromMs": 142510,
+          "toMs": 142643
+        }
+      ]
+    },
+    {
+      "startMs": 142670,
+      "endMs": 144503,
+      "tokens": [
+        {
+          "text": "la",
+          "fromMs": 142670,
+          "toMs": 142723
+        },
+        {
+          "text": "différence",
+          "fromMs": 142776,
+          "toMs": 144243
+        }
+      ]
+    },
+    {
+      "startMs": 145016,
+      "endMs": 145883,
+      "tokens": [
+        {
+          "text": "La",
+          "fromMs": 145016,
+          "toMs": 145043
+        },
+        {
+          "text": "sécurité",
+          "fromMs": 145105,
+          "toMs": 145603
+        },
+        {
+          "text": "est",
+          "fromMs": 145663,
+          "toMs": 145843
+        }
+      ]
+    },
+    {
+      "startMs": 145883,
+      "endMs": 146835,
+      "tokens": [
+        {
+          "text": "ennuyeuse",
+          "fromMs": 145883,
+          "toMs": 146483
+        },
+        {
+          "text": "pendant",
+          "fromMs": 146523,
+          "toMs": 146803
+        }
+      ]
+    },
+    {
+      "startMs": 146835,
+      "endMs": 148190,
+      "tokens": [
+        {
+          "text": "deux",
+          "fromMs": 146835,
+          "toMs": 146963
+        },
+        {
+          "text": "semaines",
+          "fromMs": 147003,
+          "toMs": 148003
+        }
+      ]
+    },
+    {
+      "startMs": 148190,
+      "endMs": 149803,
+      "tokens": [
+        {
+          "text": "Ensuite",
+          "fromMs": 148190,
+          "toMs": 149363
+        },
+        {
+          "text": "elle",
+          "fromMs": 149443,
+          "toMs": 149763
+        }
+      ]
+    },
+    {
+      "startMs": 149803,
+      "endMs": 150163,
+      "tokens": [
+        {
+          "text": "devient",
+          "fromMs": 149803,
+          "toMs": 150083
+        }
+      ]
+    },
+    {
+      "startMs": 150163,
+      "endMs": 152063,
+      "tokens": [
+        {
+          "text": "reposante",
+          "fromMs": 150163,
+          "toMs": 151803
+        }
+      ]
+    },
+    {
+      "startMs": 152696,
+      "endMs": 153323,
+      "tokens": [
+        {
+          "text": "Le",
+          "fromMs": 152696,
+          "toMs": 152723
+        },
+        {
+          "text": "calme",
+          "fromMs": 152803,
+          "toMs": 153123
+        },
+        {
+          "text": "n'est",
+          "fromMs": 153163,
+          "toMs": 153283
+        }
+      ]
+    },
+    {
+      "startMs": 153323,
+      "endMs": 154030,
+      "tokens": [
+        {
+          "text": "pas",
+          "fromMs": 153323,
+          "toMs": 153443
+        },
+        {
+          "text": "l'absence",
+          "fromMs": 153483,
+          "toMs": 154003
+        }
+      ]
+    },
+    {
+      "startMs": 154030,
+      "endMs": 154983,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 154030,
+          "toMs": 154083
+        },
+        {
+          "text": "passion",
+          "fromMs": 154153,
+          "toMs": 154723
+        }
+      ]
+    },
+    {
+      "startMs": 155283,
+      "endMs": 156510,
+      "tokens": [
+        {
+          "text": "C'est",
+          "fromMs": 155283,
+          "toMs": 155923
+        },
+        {
+          "text": "l'absence",
+          "fromMs": 155963,
+          "toMs": 156483
+        }
+      ]
+    },
+    {
+      "startMs": 156510,
+      "endMs": 158143,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 156510,
+          "toMs": 156563
+        },
+        {
+          "text": "peur",
+          "fromMs": 156670,
+          "toMs": 157883
+        }
+      ]
+    },
+    {
+      "startMs": 158696,
+      "endMs": 159176,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 158696,
+          "toMs": 158723
+        },
+        {
+          "text": "n'as",
+          "fromMs": 158763,
+          "toMs": 158883
+        },
+        {
+          "text": "pas",
+          "fromMs": 158943,
+          "toMs": 159123
+        }
+      ]
+    },
+    {
+      "startMs": 159176,
+      "endMs": 160023,
+      "tokens": [
+        {
+          "text": "un",
+          "fromMs": 159176,
+          "toMs": 159283
+        },
+        {
+          "text": "type",
+          "fromMs": 159363,
+          "toMs": 159763
+        }
+      ]
+    },
+    {
+      "startMs": 160083,
+      "endMs": 161030,
+      "tokens": [
+        {
+          "text": "Tu",
+          "fromMs": 160083,
+          "toMs": 160723
+        },
+        {
+          "text": "as",
+          "fromMs": 160750,
+          "toMs": 160803
+        },
+        {
+          "text": "une",
+          "fromMs": 160843,
+          "toMs": 160963
+        }
+      ]
+    },
+    {
+      "startMs": 161030,
+      "endMs": 162803,
+      "tokens": [
+        {
+          "text": "blessure",
+          "fromMs": 161030,
+          "toMs": 161763
+        },
+        {
+          "text": "qui",
+          "fromMs": 161863,
+          "toMs": 162163
+        },
+        {
+          "text": "reconnaît",
+          "fromMs": 162230,
+          "toMs": 162723
+        }
+      ]
+    },
+    {
+      "startMs": 162803,
+      "endMs": 164183,
+      "tokens": [
+        {
+          "text": "sa",
+          "fromMs": 162803,
+          "toMs": 162963
+        },
+        {
+          "text": "propre",
+          "fromMs": 163020,
+          "toMs": 163363
+        },
+        {
+          "text": "langue",
+          "fromMs": 163432,
+          "toMs": 163923
+        }
+      ]
+    },
+    {
+      "startMs": 164296,
+      "endMs": 166243,
+      "tokens": [
+        {
+          "text": "Et",
+          "fromMs": 164296,
+          "toMs": 165043
+        },
+        {
+          "text": "une",
+          "fromMs": 165083,
+          "toMs": 165203
+        },
+        {
+          "text": "blessure",
+          "fromMs": 165256,
+          "toMs": 166003
+        }
+      ]
+    },
+    {
+      "startMs": 166243,
+      "endMs": 167863,
+      "tokens": [
+        {
+          "text": "ça",
+          "fromMs": 166243,
+          "toMs": 166723
+        },
+        {
+          "text": "se",
+          "fromMs": 166776,
+          "toMs": 166883
+        },
+        {
+          "text": "soigne",
+          "fromMs": 166963,
+          "toMs": 167603
+        }
+      ]
+    },
+    {
+      "startMs": 169176,
+      "endMs": 170387,
+      "tokens": [
+        {
+          "text": "Et",
+          "fromMs": 169176,
+          "toMs": 169203
+        },
+        {
+          "text": "toi",
+          "fromMs": 169283,
+          "toMs": 170243
+        },
+        {
+          "text": "tu",
+          "fromMs": 170270,
+          "toMs": 170323
+        }
+      ]
+    },
+    {
+      "startMs": 170387,
+      "endMs": 171310,
+      "tokens": [
+        {
+          "text": "confonds",
+          "fromMs": 170387,
+          "toMs": 170803
+        },
+        {
+          "text": "quoi",
+          "fromMs": 170851,
+          "toMs": 171043
+        },
+        {
+          "text": "avec",
+          "fromMs": 171091,
+          "toMs": 171283
+        }
+      ]
+    },
+    {
+      "startMs": 171310,
+      "endMs": 172056,
+      "tokens": [
+        {
+          "text": "de",
+          "fromMs": 171310,
+          "toMs": 171363
+        },
+        {
+          "text": "l'amour",
+          "fromMs": 171403,
+          "toMs": 171843
+        },
+        {
+          "text": "en",
+          "fromMs": 171896,
+          "toMs": 172003
+        }
+      ]
+    },
+    {
+      "startMs": 172056,
+      "endMs": 172823,
+      "tokens": [
+        {
+          "text": "ce",
+          "fromMs": 172056,
+          "toMs": 172163
+        },
+        {
+          "text": "moment ?",
+          "fromMs": 172209,
+          "toMs": 172563
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/01-1-8496997.mp4",
+      "type": "video",
+      "from": 0,
+      "durationInFrames": 119,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0863599537037036,
+      "panXFrom": 0.536920438957476,
+      "panXTo": -0.536920438957476,
+      "panYFrom": 0.3884570044581619,
+      "panYTo": -0.3884570044581619,
+      "trimBefore": 18,
+      "credit": "Ivan S / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/02-1-7657451.mp4",
+      "type": "video",
+      "from": 101,
+      "durationInFrames": 143,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0814372427983538,
+      "panXFrom": 0.4551320301783265,
+      "panXTo": -0.4551320301783265,
+      "panYFrom": 0.19221322016460904,
+      "panYTo": -0.19221322016460904,
+      "trimBefore": 18,
+      "credit": "Cup of  Couple / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/03-1-36337219.mp4",
+      "type": "video",
+      "from": 226,
+      "durationInFrames": 198,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.076514531893004,
+      "panXFrom": 0.773343621399177,
+      "panXTo": -0.773343621399177,
+      "panYFrom": 0.24596943587105624,
+      "panYTo": -0.24596943587105624,
+      "trimBefore": 18,
+      "credit": "SHOX ART / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/04-1-35798906.mp4",
+      "type": "video",
+      "from": 406,
+      "durationInFrames": 210,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0715918209876543,
+      "panXFrom": 0.6915552126200275,
+      "panXTo": -0.6915552126200275,
+      "panYFrom": 0.2997256515775034,
+      "panYTo": -0.2997256515775034,
+      "trimBefore": 18,
+      "credit": "Themba Mtegha / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/05-1-34760499.mp4",
+      "type": "video",
+      "from": 598,
+      "durationInFrames": 198,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0966691100823045,
+      "panXFrom": 0.609766803840878,
+      "panXTo": -0.609766803840878,
+      "panYFrom": 0.3534818672839506,
+      "panYTo": -0.3534818672839506,
+      "trimBefore": 18,
+      "credit": "Kleison  Leopoldino / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/06-1-7230313.mp4",
+      "type": "video",
+      "from": 778,
+      "durationInFrames": 180,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0917463991769547,
+      "panXFrom": 0.5279783950617284,
+      "panXTo": -0.5279783950617284,
+      "panYFrom": 0.1572380829903978,
+      "panYTo": -0.1572380829903978,
+      "trimBefore": 0,
+      "credit": "MART  PRODUCTION / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/07-1-7431753.mp4",
+      "type": "video",
+      "from": 980,
+      "durationInFrames": 231,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.086823688271605,
+      "panXFrom": 0.4461899862825789,
+      "panXTo": -0.4461899862825789,
+      "panYFrom": 0.210994298696845,
+      "panYTo": -0.210994298696845,
+      "trimBefore": 18,
+      "credit": "Monstera Production / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/08-1-8028807.mp4",
+      "type": "video",
+      "from": 1193,
+      "durationInFrames": 217,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0819009773662551,
+      "panXFrom": 0.7644015775034294,
+      "panXTo": -0.7644015775034294,
+      "panYFrom": 0.26475051440329217,
+      "panYTo": -0.26475051440329217,
+      "trimBefore": 18,
+      "credit": "Anastasia  Shuraeva / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/09-1-13931600.mp4",
+      "type": "video",
+      "from": 1392,
+      "durationInFrames": 232,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0769782664609053,
+      "panXFrom": 0.6826131687242798,
+      "panXTo": -0.6826131687242798,
+      "panYFrom": 0.3185067301097394,
+      "panYTo": -0.3185067301097394,
+      "trimBefore": 18,
+      "credit": "Mizuno K / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/10-1-15520346.mp4",
+      "type": "video",
+      "from": 1606,
+      "durationInFrames": 191,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0720555555555555,
+      "panXFrom": 0.6008247599451304,
+      "panXTo": -0.6008247599451304,
+      "panYFrom": 0.3722629458161866,
+      "panYTo": -0.3722629458161866,
+      "trimBefore": 18,
+      "credit": "Kuiyibo Campos / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/11-1-9035656.mp4",
+      "type": "video",
+      "from": 1779,
+      "durationInFrames": 122,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0971328446502058,
+      "panXFrom": 0.5190363511659808,
+      "panXTo": -0.5190363511659808,
+      "panYFrom": 0.17601916152263375,
+      "panYTo": -0.17601916152263375,
+      "trimBefore": 18,
+      "credit": "Kevin  Malik / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/11-2-8055995.mp4",
+      "type": "video",
+      "from": 1883,
+      "durationInFrames": 171,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.092210133744856,
+      "panXFrom": 0.4372479423868313,
+      "panXTo": -0.4372479423868313,
+      "panYFrom": 0.22977537722908092,
+      "panYTo": -0.22977537722908092,
+      "trimBefore": 18,
+      "credit": "Hanna Pad / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/12-1-30432351.mp4",
+      "type": "video",
+      "from": 2036,
+      "durationInFrames": 205,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0872874228395062,
+      "panXFrom": 0.7554595336076818,
+      "panXTo": -0.7554595336076818,
+      "panYFrom": 0.2835315929355281,
+      "panYTo": -0.2835315929355281,
+      "trimBefore": 18,
+      "credit": "Evgenij Mikhailov / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/13-1-6279146.mp4",
+      "type": "video",
+      "from": 2223,
+      "durationInFrames": 174,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0823647119341564,
+      "panXFrom": 0.6736711248285323,
+      "panXTo": -0.6736711248285323,
+      "panYFrom": 0.3372878086419753,
+      "panYTo": -0.3372878086419753,
+      "trimBefore": 18,
+      "credit": "Artem Podrez / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/14-1-12893568.mp4",
+      "type": "video",
+      "from": 2379,
+      "durationInFrames": 241,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0774420010288066,
+      "panXFrom": 0.5918827160493827,
+      "panXTo": -0.5918827160493827,
+      "panYFrom": 0.3910440243484225,
+      "panYTo": -0.3910440243484225,
+      "trimBefore": 18,
+      "credit": "Mizuno K / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/15-1-28952514.mp4",
+      "type": "video",
+      "from": 2602,
+      "durationInFrames": 219,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0725192901234568,
+      "panXFrom": 0.5100943072702332,
+      "panXTo": -0.5100943072702332,
+      "panYFrom": 0.19480024005486968,
+      "panYTo": -0.19480024005486968,
+      "trimBefore": 18,
+      "credit": "Alexander Mass / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/16-1-6753388.mp4",
+      "type": "video",
+      "from": 2803,
+      "durationInFrames": 175,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.097596579218107,
+      "panXFrom": 0.4283058984910837,
+      "panXTo": -0.4283058984910837,
+      "panYFrom": 0.24855645576131685,
+      "panYTo": -0.24855645576131685,
+      "trimBefore": 18,
+      "credit": "cottonbro studio / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/17-1-5981556.mp4",
+      "type": "video",
+      "from": 2960,
+      "durationInFrames": 191,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0926738683127573,
+      "panXFrom": 0.7465174897119342,
+      "panXTo": -0.7465174897119342,
+      "panYFrom": 0.3023126714677641,
+      "panYTo": -0.3023126714677641,
+      "trimBefore": 18,
+      "credit": "https://kaboompics.com/ / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/18-1-8705261.mp4",
+      "type": "video",
+      "from": 3133,
+      "durationInFrames": 130,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0877511574074075,
+      "panXFrom": 0.6647290809327846,
+      "panXTo": -0.6647290809327846,
+      "panYFrom": 0.35606888717421126,
+      "panYTo": -0.35606888717421126,
+      "trimBefore": 18,
+      "credit": "Katya Wolf / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/19-1-13326129.mp4",
+      "type": "video",
+      "from": 3245,
+      "durationInFrames": 211,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0828284465020577,
+      "panXFrom": 0.5829406721536352,
+      "panXTo": -0.5829406721536352,
+      "panYFrom": 0.15982510288065843,
+      "panYTo": -0.15982510288065843,
+      "trimBefore": 18,
+      "credit": "Mizuno K / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/20-1-29248030.mp4",
+      "type": "video",
+      "from": 3438,
+      "durationInFrames": 70,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0779057355967079,
+      "panXFrom": 0.5011522633744856,
+      "panXTo": -0.5011522633744856,
+      "panYFrom": 0.2135813185871056,
+      "panYTo": -0.2135813185871056,
+      "trimBefore": 18,
+      "credit": "Aly Nguyen / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/20-2-15689211.mp4",
+      "type": "video",
+      "from": 3490,
+      "durationInFrames": 119,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.072983024691358,
+      "panXFrom": 0.4193638545953361,
+      "panXTo": -0.4193638545953361,
+      "panYFrom": 0.2673375342935528,
+      "panYTo": -0.2673375342935528,
+      "trimBefore": 1,
+      "credit": "Ali  Alcántara / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/21-1-8802295.mp4",
+      "type": "video",
+      "from": 3591,
+      "durationInFrames": 210,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0980603137860083,
+      "panXFrom": 0.7375754458161866,
+      "panXTo": -0.7375754458161866,
+      "panYFrom": 0.32109374999999996,
+      "panYTo": -0.32109374999999996,
+      "trimBefore": 18,
+      "credit": "Mike Jones / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/22-1-8551759.mp4",
+      "type": "video",
+      "from": 3783,
+      "durationInFrames": 213,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0931376028806585,
+      "panXFrom": 0.6557870370370371,
+      "panXTo": -0.6557870370370371,
+      "panYFrom": 0.3748499657064472,
+      "panYTo": -0.3748499657064472,
+      "trimBefore": 18,
+      "credit": "Liliana Drew / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/23-1-8795160.mp4",
+      "type": "video",
+      "from": 3978,
+      "durationInFrames": 192,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0882148919753087,
+      "panXFrom": 0.5739986282578875,
+      "panXTo": -0.5739986282578875,
+      "panYFrom": 0.17860618141289436,
+      "panYTo": -0.17860618141289436,
+      "trimBefore": 18,
+      "credit": "Anastasia  Shuraeva / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/24-1-8601532.mp4",
+      "type": "video",
+      "from": 4152,
+      "durationInFrames": 198,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.083292181069959,
+      "panXFrom": 0.492210219478738,
+      "panXTo": -0.492210219478738,
+      "panYFrom": 0.23236239711934156,
+      "panYTo": -0.23236239711934156,
+      "trimBefore": 18,
+      "credit": "Pushkar Yadav / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/25-1-33632005.mp4",
+      "type": "video",
+      "from": 4332,
+      "durationInFrames": 120,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0783694701646092,
+      "panXFrom": 0.4104218106995885,
+      "panXTo": -0.4104218106995885,
+      "panYFrom": 0.28611861282578877,
+      "panYTo": -0.28611861282578877,
+      "trimBefore": 18,
+      "credit": "Airam Dato-on / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/25-2-34363773.mp4",
+      "type": "video",
+      "from": 4434,
+      "durationInFrames": 147,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0734467592592594,
+      "panXFrom": 0.728633401920439,
+      "panXTo": -0.728633401920439,
+      "panYFrom": 0.33987482853223594,
+      "panYTo": -0.33987482853223594,
+      "trimBefore": 3,
+      "credit": "Mr Clinci / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/26-1-9242151.mp4",
+      "type": "video",
+      "from": 4563,
+      "durationInFrames": 198,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0985240483539096,
+      "panXFrom": 0.6468449931412895,
+      "panXTo": -0.6468449931412895,
+      "panYFrom": 0.3936310442386831,
+      "panYTo": -0.3936310442386831,
+      "trimBefore": 12,
+      "credit": "RDNE Stock project / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/27-1-5853207.mp4",
+      "type": "video",
+      "from": 4743,
+      "durationInFrames": 107,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0936013374485598,
+      "panXFrom": 0.56505658436214,
+      "panXTo": -0.56505658436214,
+      "panYFrom": 0.19738725994513032,
+      "panYTo": -0.19738725994513032,
+      "trimBefore": 18,
+      "credit": "cottonbro studio / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/27-2-4962726.mp4",
+      "type": "video",
+      "from": 4832,
+      "durationInFrames": 107,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.08867862654321,
+      "panXFrom": 0.4832681755829904,
+      "panXTo": -0.4832681755829904,
+      "panYFrom": 0.25114347565157746,
+      "panYTo": -0.25114347565157746,
+      "trimBefore": 18,
+      "credit": "Tima Miroshnichenko / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/27-3-30668411.mp4",
+      "type": "video",
+      "from": 4921,
+      "durationInFrames": 150,
+      "zoomFrom": 1.04,
+      "zoomTo": 1.0837559156378602,
+      "panXFrom": 0.4014797668038409,
+      "panXTo": -0.4014797668038409,
+      "panYFrom": 0.3048996913580247,
+      "panYTo": -0.3048996913580247,
+      "trimBefore": 0,
+      "credit": "Amar  Preciado / Pexels"
+    },
+    {
+      "src": "videos/pourquoi-tu-attires-le-meme-type/28-1-8038468.mp4",
+      "type": "video",
+      "from": 5057,
+      "durationInFrames": 162,
+      "zoomFrom": 1.0788332047325104,
+      "zoomTo": 1.04,
+      "panXFrom": 0.7196913580246914,
+      "panXTo": -0.7196913580246914,
+      "panYFrom": 0.35865590706447187,
+      "panYTo": -0.35865590706447187,
+      "trimBefore": 18,
+      "credit": "Thirdman / Pexels"
+    }
+  ],
+  "accent": "#8B2D4A",
+  "showProgress": true,
+  "showTitle": true,
+  "durationInFrames": 5219
+}

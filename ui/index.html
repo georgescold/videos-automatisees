@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Usine à vidéos : chaîne amour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <!-- Ruby heart : coeur facette low-poly, symbole de la marque. -->
+        <svg class="logo" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 21.4 2.9 12.2C1.1 9.6 2.6 5 6.6 4.5c2.2-.3 4 .9 5.4 2.4 1.4-1.5 3.2-2.7 5.4-2.4 4 .5 5.5 5.1 3.7 7.7z"
+            fill="#8B2D4A"
+          />
+          <path d="M12 6.9v14.5L2.9 12.2z" fill="#7A0016" opacity=".5" />
+          <path d="M12 6.9 6.6 4.5 2.9 12.2z" fill="#B5001F" opacity=".4" />
+          <path d="m12 6.9 9.1 5.3-3.7-7.7z" fill="#FFFFFF" opacity=".2" />
+        </svg>
+        <h1>Usine à vidéos</h1>
+        <span class="brand-sub">Chaîne amour</span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="pills" id="status-pills"></div>
+        <button class="icon-btn" id="keys-open" title="Clés ElevenLabs" aria-label="Clés ElevenLabs">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+            <circle cx="8" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path d="M12.2 12H21M18 12v3M15.2 12v2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+        <button class="icon-btn" id="theme-toggle" title="Changer de thème" aria-label="Changer de thème">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+            <path class="ico-sun" d="M12 7a5 5 0 100 10 5 5 0 000-10zM12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path class="ico-moon" d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Colonne 1 : les scripts -->
+      <aside class="panel scripts">
+        <div class="panel-head">
+          <h2>Scripts</h2>
+          <div class="row-actions tight">
+            <button class="btn btn-ghost small" id="import-script">Importer</button>
+            <button class="btn btn-ghost small" id="new-script">Nouveau</button>
+          </div>
+        </div>
+
+        <div class="inset" id="new-form" hidden>
+          <input type="text" id="new-title" placeholder="Titre de la vidéo" />
+          <div class="row-actions end">
+            <button class="btn btn-ghost small" id="new-cancel">Annuler</button>
+            <button class="btn small" id="new-create">Créer</button>
+          </div>
+        </div>
+
+        <ul class="script-list" id="script-list"></ul>
+
+        <p class="hint">
+          Pour qu'un script s'écrive tout seul, demande à Claude&nbsp;:
+          <em>«&nbsp;écris-moi un script sur la jalousie&nbsp;»</em>
+        </p>
+      </aside>
+
+      <!-- Colonne 2 : éditeur ou import -->
+      <section class="panel editor">
+        <div class="empty" id="editor-empty">
+          <p>C'est ici que la vidéo prend forme. Choisis un script, importe un texte, ou crées-en un.</p>
+        </div>
+
+        <!-- Import -->
+        <div class="editor-body" id="import-body" hidden>
+          <div class="panel-head">
+            <h2 class="title">Importer un script</h2>
+            <div class="row-actions">
+              <button class="btn btn-ghost" id="import-cancel">Annuler</button>
+              <button class="btn btn-primary compact" id="import-create">Découper et créer</button>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Titre de la vidéo</span>
+            <input type="text" id="i-title" placeholder="Pourquoi tu attires toujours le même type de personne" />
+          </label>
+
+          <label class="field">
+            <span>Texte du script <small>(colle-le tel quel, la mise en beats est automatique)</small></span>
+            <textarea id="i-text" rows="16" placeholder="Colle ici ton script complet.
+
+Sépare les parties par une ligne vide : le découpage respecte les paragraphes, puis les phrases, et regroupe à la bonne longueur pour la voix off."></textarea>
+          </label>
+
+          <div class="preview-head" id="i-head" hidden>
+            <div>
+              <h3>Aperçu du découpage</h3>
+              <p class="note" id="i-stats"></p>
+            </div>
+            <span class="tag">Non enregistré</span>
+          </div>
+
+          <ol class="beats preview" id="i-preview"></ol>
+
+          <div class="import-cta" id="i-cta" hidden>
+            <p class="note">
+              Rien n'est encore sur le disque. Crée le script pour pouvoir joindre ta voix et lancer la production.
+            </p>
+            <button class="btn btn-primary wide" id="import-create-bottom">Découper et créer</button>
+          </div>
+        </div>
+
+        <!-- Édition -->
+        <div class="editor-body" id="editor-body" hidden>
+          <div class="panel-head">
+            <h2 class="title" id="editor-slug">.</h2>
+            <div class="row-actions">
+              <span class="dirty" id="dirty-flag" hidden>Modifié</span>
+              <button class="btn btn-ghost danger small" id="delete-script">Supprimer</button>
+              <button class="btn" id="save-script">Enregistrer</button>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Titre affiché dans la vidéo</span>
+            <input
+              type="text"
+              id="f-title"
+              placeholder="Pourquoi tu attires toujours le même type de personne"
+            />
+          </label>
+
+          <label class="field">
+            <span>Accroche <small>(note interne, jamais lue)</small></span>
+            <input type="text" id="f-hook" placeholder="Ce n'est pas de la malchance." />
+          </label>
+
+          <div class="beats-head">
+            <div class="seg small-seg" id="editor-view">
+              <button type="button" class="seg-btn active" data-view="texte">Texte</button>
+              <button type="button" class="seg-btn" data-view="beats">Beats</button>
+            </div>
+            <div class="counters">
+              <span id="c-beats">0 beat</span>
+              <span id="c-words">0 mot</span>
+              <span id="c-duration">0 s</span>
+            </div>
+          </div>
+
+          <!-- Le script d'un seul tenant : la vue par défaut -->
+          <div class="view-pane" id="pane-texte">
+            <textarea id="fulltext" rows="14" spellcheck="true"
+                      placeholder="Le texte de la voix off, d'un seul tenant."></textarea>
+            <div class="row-actions end fulltext-actions">
+              <span class="note" id="fulltext-stats"></span>
+              <button class="btn btn-ghost small" id="fulltext-copy">Copier</button>
+              <button class="btn small" id="fulltext-apply" hidden>Appliquer au découpage</button>
+            </div>
+            <p class="note" id="fulltext-warn" hidden></p>
+          </div>
+
+          <!-- Le détail : une image et une intonation par phrase -->
+          <div class="view-pane" id="pane-beats" hidden>
+            <ol class="beats" id="beats"></ol>
+            <button class="btn btn-ghost wide" id="add-beat">Ajouter un beat</button>
+          </div>
+
+          <details class="fold">
+            <summary>Métadonnées YouTube</summary>
+            <label class="field">
+              <span>Titre YouTube</span>
+              <input type="text" id="f-yt-title" />
+            </label>
+            <label class="field">
+              <span>Description</span>
+              <textarea id="f-yt-description" rows="4"></textarea>
+            </label>
+            <label class="field">
+              <span>Tags <small>(séparés par des virgules)</small></span>
+              <input type="text" id="f-yt-tags" />
+            </label>
+            <label class="field">
+              <span>Texte de miniature</span>
+              <input type="text" id="f-yt-thumb" />
+            </label>
+          </details>
+        </div>
+      </section>
+
+      <!-- Colonne 3 : la production -->
+      <section class="panel produce">
+        <div class="panel-head">
+          <h2>Production</h2>
+        </div>
+
+        <div class="prod-form" id="prod-form">
+          <div class="group">
+            <div class="duo">
+              <label class="field">
+                <span>Format</span>
+                <select id="o-format">
+                  <option value="short">Vertical 9:16</option>
+                  <option value="long">Horizontal 16:9</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Visuels</span>
+                <select id="o-media">
+                  <option value="mix">Vidéo, photo en repli</option>
+                  <option value="video">Vidéo uniquement</option>
+                  <option value="photo">Photo uniquement</option>
+                </select>
+              </label>
+            </div>
+            <p class="note" id="media-note">
+              La vidéo passe en premier sur chaque beat. La photo prend le relais quand Pexels ne rend rien d'exploitable.
+            </p>
+          </div>
+
+          <div class="group">
+            <div class="group-head">
+              <h3>Musique</h3>
+              <button class="btn btn-ghost small" id="music-browse">Chercher</button>
+            </div>
+
+            <div class="music-current" id="music-current">
+              <span id="music-name">Aucune musique</span>
+              <button class="icon-btn tiny" id="music-clear" title="Retirer" hidden>×</button>
+            </div>
+            <div class="attribution" id="music-attribution" hidden></div>
+
+            <div class="inset" id="music-panel" hidden>
+              <div class="duo">
+                <label class="field">
+                  <span>Source</span>
+                  <select id="music-provider"></select>
+                </label>
+                <label class="field">
+                  <span>Ambiance</span>
+                  <select id="music-mood"></select>
+                </label>
+              </div>
+              <label class="field">
+                <span>Ou mots-clés <small>(en anglais)</small></span>
+                <input type="text" id="music-query" placeholder="slow piano rain" />
+              </label>
+              <button class="btn small wide" id="music-search">Chercher</button>
+              <ul class="music-list" id="music-results"></ul>
+            </div>
+
+            <label class="slider-row">
+              <span>Volume <b id="volume-value">10 %</b></span>
+              <input type="range" id="o-volume" min="0" max="40" step="1" value="10" />
+            </label>
+          </div>
+
+          <div class="group">
+            <div class="group-head"><h3>Voix off</h3></div>
+
+            <div class="seg" id="voice-mode">
+              <button type="button" class="seg-btn active" data-mode="tts">Générée</button>
+              <button type="button" class="seg-btn" data-mode="mine">Ma voix</button>
+              <button type="button" class="seg-btn" data-mode="sts">Ma voix + relookée</button>
+            </div>
+
+            <!-- Voix générée -->
+            <div class="voice-pane" id="pane-tts">
+              <div class="seg small-seg" id="tts-engine">
+                <button type="button" class="seg-btn" data-engine="xtts">Locale HD</button>
+                <button type="button" class="seg-btn active" data-engine="elevenlabs">ElevenLabs</button>
+              </div>
+
+              <div class="engine-pane" id="engine-xtts" hidden>
+                <label class="field">
+                  <span>Voix</span>
+                  <select id="o-xtts-voice"></select>
+                </label>
+                <label class="check">
+                  <input type="checkbox" id="o-xtts-clone" />
+                  <span>Cloner ma voix (dépose un échantillon en mode « Ma voix »)</span>
+                </label>
+                <p class="note" id="xtts-note">Meilleure qualité locale, accélérée par ton GPU. Licence non commerciale.</p>
+              </div>
+
+              <div class="engine-pane" id="engine-elevenlabs" hidden>
+                <label class="field">
+                  <span>Voix de cette vidéo</span>
+                  <div class="voice-pick">
+                    <span class="voice-current" id="voice-current">Voix par défaut du projet</span>
+                    <button type="button" class="icon-btn tiny" id="voice-preview" title="Écouter">▸</button>
+                    <button type="button" class="btn btn-ghost small" id="voice-browse">Changer</button>
+                  </div>
+                </label>
+                <p class="note" id="voice-note" hidden></p>
+                <div class="quota" id="eleven-quota" hidden></div>
+                <p class="note">
+                  Qualité supérieure. Le quota des clés est vérifié avant de lancer la synthèse.
+                  <button type="button" class="link" id="quota-keys">Gérer les clés</button>
+                </p>
+              </div>
+            </div>
+
+            <!-- Ma voix, telle quelle -->
+            <div class="voice-pane" id="pane-mine" hidden>
+              <div class="audio-state" id="audio-state">Dépose ton enregistrement, il devient le son de la vidéo.</div>
+              <div class="row-actions">
+                <label class="btn btn-ghost small file">
+                  Choisir un fichier
+                  <input type="file" id="o-audio" accept="audio/*" hidden />
+                </label>
+                <button class="btn btn-ghost danger small" id="drop-audio" hidden>Retirer</button>
+              </div>
+              <p class="note" id="align-note">Sous-titres calés en local par transcription. Aucune clé requise.</p>
+            </div>
+
+            <!-- Speech-to-speech -->
+            <div class="voice-pane" id="pane-sts" hidden>
+              <div class="audio-state" id="audio-state-sts">Dépose ta voix : ElevenLabs garde ton intonation et plaque une autre voix par-dessus.</div>
+              <div class="row-actions">
+                <label class="btn btn-ghost small file">
+                  Choisir un fichier
+                  <input type="file" id="o-audio-sts" accept="audio/*" hidden />
+                </label>
+                <button class="btn btn-ghost danger small" id="drop-audio-sts" hidden>Retirer</button>
+              </div>
+              <label class="field">
+                <span>Voix cible ElevenLabs</span>
+                <select id="o-sts-voice"><option value="">Charge les voix…</option></select>
+              </label>
+              <p class="note" id="sts-note">Nécessite la clé ElevenLabs.</p>
+            </div>
+          </div>
+
+          <details class="fold">
+            <summary>Options avancées</summary>
+            <label class="check">
+              <input type="checkbox" id="o-force-voice" />
+              <span>Re-synthétiser la voix</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="o-no-media" />
+              <span>Garder les visuels déjà téléchargés</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" id="o-build-only" />
+              <span>Préparer seulement, sans rendre</span>
+            </label>
+          </details>
+
+          <p class="issues" id="issues" hidden></p>
+          <button class="btn btn-primary wide" id="produce">Produire la vidéo</button>
+          <button class="btn btn-ghost wide" id="stop" hidden>Arrêter</button>
+        </div>
+
+        <div class="job" id="job" hidden>
+          <div class="job-head">
+            <span class="job-phase" id="job-phase">Préparation</span>
+            <span class="job-elapsed" id="job-elapsed"></span>
+            <span class="spinner" id="job-spinner"></span>
+          </div>
+
+          <div class="progress" id="progress">
+            <div class="progress-bar"><i id="progress-fill"></i></div>
+            <div class="progress-legend">
+              <span id="progress-step">Préparation des visuels</span>
+              <b id="progress-percent">0 %</b>
+            </div>
+          </div>
+
+          <p class="note" id="job-hint">
+            La vidéo s'affichera ici même à la fin, avec son bouton de téléchargement.
+            Tu peux fermer cet onglet : la production continue.
+          </p>
+
+          <details class="fold">
+            <summary>Détail technique</summary>
+            <pre class="console" id="console"></pre>
+          </details>
+        </div>
+
+        <div class="result" id="result" hidden>
+          <video id="player" controls playsinline></video>
+          <a class="btn wide" id="download" download>Télécharger le MP4</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Trousseau : les clés ElevenLabs et leur quota -->
+    <div class="overlay" id="keys-overlay" hidden>
+      <div class="modal">
+        <div class="panel-head">
+          <h2>Clés ElevenLabs</h2>
+          <div class="row-actions tight">
+            <button class="btn btn-ghost small" id="keys-refresh">Rafraîchir les quotas</button>
+            <button class="icon-btn tiny" id="keys-close" title="Fermer" aria-label="Fermer">×</button>
+          </div>
+        </div>
+
+        <p class="note">
+          Un compte gratuit donne 10&nbsp;000 crédits par mois, soit 10&nbsp;000 caractères de voix off.
+          Ajoute autant de comptes que tu veux&nbsp;: avant chaque vidéo, l'usine relève le quota réel
+          de chaque clé, refuse de commencer si la somme ne suffit pas, et sinon prend la clé au plus
+          petit reste suffisant — puis passe à la suivante quand elle est vide.
+        </p>
+
+        <ul class="key-list" id="key-list"></ul>
+        <p class="key-total" id="key-total"></p>
+
+        <div class="inset">
+          <div class="duo">
+            <label class="field">
+              <span>Nom du compte <small>(facultatif)</small></span>
+              <input type="text" id="key-label" placeholder="Compte 2" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>Clé API</span>
+              <input type="text" id="key-value" placeholder="sk_…" autocomplete="off" spellcheck="false" />
+            </label>
+          </div>
+          <button class="btn small wide" id="key-add">Ajouter la clé</button>
+          <p class="note">
+            La clé est vérifiée auprès d'ElevenLabs, puis rangée dans <code>.keys.json</code> à la
+            racine du projet. Ce fichier reste sur ta machine et n'est jamais versionné.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Catalogue de voix : celles du compte et la bibliothèque ElevenLabs -->
+    <div class="overlay" id="voices-overlay" hidden>
+      <div class="modal wide-modal">
+        <div class="panel-head">
+          <h2>Choisir une voix</h2>
+          <div class="row-actions tight">
+            <span class="note" id="voices-count"></span>
+            <button class="icon-btn tiny" id="voices-close" title="Fermer" aria-label="Fermer">×</button>
+          </div>
+        </div>
+
+        <div class="seg small-seg" id="voice-set">
+          <button type="button" class="seg-btn active" data-set="selection">Sélection amour</button>
+          <button type="button" class="seg-btn" data-set="tout">Tout le catalogue</button>
+        </div>
+
+        <div class="voice-filters">
+          <input type="search" id="voice-search" placeholder="Chercher un nom, un accent, un style…" />
+          <select id="voice-language">
+            <option value="fr">Français</option>
+            <option value="en">Anglais</option>
+            <option value="all">Toutes langues</option>
+          </select>
+          <select id="voice-gender">
+            <option value="">Tous</option>
+            <option value="female">Féminines</option>
+            <option value="male">Masculines</option>
+          </select>
+        </div>
+
+        <p class="note" id="voice-help">
+          Vingt voix retenues pour raconter l'amour : registre chaud ou posé, capables de tenir
+          une confidence. Le bouton ▸ joue l'extrait officiel, gratuitement. « Sur mon script »
+          la fait lire les deux premiers beats de la vidéo ouverte, intonations comprises :
+          une centaine de crédits, sur ton compte payant.
+        </p>
+
+        <ul class="voice-list" id="voice-list"></ul>
+      </div>
+    </div>
+
+    <audio id="preview-audio"></audio>
+    <script src="/app.js"></script>
+  </body>
+</html>
