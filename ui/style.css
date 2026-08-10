@@ -1205,6 +1205,123 @@ input[type='range'] {
   font-size: 12.5px;
 }
 
+/* ---------- parcours en trois etapes ---------- */
+.stepchip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 21px;
+  height: 21px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--burgundy);
+  color: var(--creme);
+  font-family: var(--body);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
+
+.panel-head h2 {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- accueil ---------- */
+.welcome {
+  max-width: 480px;
+  text-align: left;
+}
+
+.welcome h3 {
+  font-family: var(--display);
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.welcome ol {
+  margin: 0 0 16px 20px;
+  display: grid;
+  gap: 11px;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.welcome ol li::marker {
+  color: var(--burgundy);
+  font-weight: 700;
+}
+
+/* ---------- recapitulatif avant production ---------- */
+.recap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 4px 0 12px;
+}
+
+.recap-item {
+  font-size: 12.5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--inset);
+  border: 1px solid var(--hairline);
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.recap-item:last-child {
+  border-color: var(--burgundy);
+  font-weight: 600;
+}
+
+/* ---------- bloc publier ---------- */
+.publish {
+  margin-top: 18px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--card-radius);
+  background: var(--accent-soft);
+  padding: 16px 18px 14px;
+}
+
+.pub-item {
+  margin-bottom: 12px;
+}
+
+.pub-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.pub-head > span {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pub-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--field-radius);
+  padding: 10px 13px;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+.pub-clamp {
+  max-height: 170px;
+  overflow-y: auto;
+}
+
 /* Vue « Texte » : le script d'un seul tenant, en tete de l'editeur. */
 #fulltext {
   width: 100%;

@@ -50,7 +50,7 @@
       <!-- Colonne 1 : les scripts -->
       <aside class="panel scripts">
         <div class="panel-head">
-          <h2>Scripts</h2>
+          <h2><span class="stepchip">1</span>Scripts</h2>
           <div class="row-actions tight">
             <button class="btn btn-ghost small" id="import-script">Importer</button>
             <button class="btn btn-ghost small" id="new-script">Nouveau</button>
@@ -76,13 +76,24 @@
       <!-- Colonne 2 : éditeur ou import -->
       <section class="panel editor">
         <div class="empty" id="editor-empty">
-          <p>C'est ici que la vidéo prend forme. Choisis un script, importe un texte, ou crées-en un.</p>
+          <div class="welcome">
+            <h3>Crée ta vidéo en trois gestes</h3>
+            <ol>
+              <li><b>Écris</b> : « Nouveau » pour partir de zéro, « Importer » pour coller un texte fini. Le découpage, les images et les intonations se préparent tout seuls.</li>
+              <li><b>Choisis la voix</b> : bouton « Changer » dans la colonne Production, écoute avant de choisir.</li>
+              <li><b>Produis</b> : la vidéo se rend à droite, se regarde sur place et se télécharge, avec le titre et la description YouTube prêts à coller.</li>
+            </ol>
+            <p class="note">
+              Les clés se règlent en haut à droite. Et pour qu'un script s'écrive tout seul,
+              demande à Claude : <em>« écris-moi un script sur la jalousie »</em>.
+            </p>
+          </div>
         </div>
 
         <!-- Import -->
         <div class="editor-body" id="import-body" hidden>
           <div class="panel-head">
-            <h2 class="title">Importer un script</h2>
+            <h2 class="title"><span class="stepchip">2</span>Importer un script</h2>
             <div class="row-actions">
               <button class="btn btn-ghost" id="import-cancel">Annuler</button>
               <button class="btn btn-primary compact" id="import-create">Découper et créer</button>
@@ -122,7 +133,7 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
         <!-- Édition -->
         <div class="editor-body" id="editor-body" hidden>
           <div class="panel-head">
-            <h2 class="title" id="editor-slug">.</h2>
+            <h2 class="title"><span class="stepchip">2</span><span id="editor-slug">.</span></h2>
             <div class="row-actions">
               <span class="dirty" id="dirty-flag" hidden>Modifié</span>
               <button class="btn btn-ghost danger small" id="delete-script">Supprimer</button>
@@ -199,7 +210,7 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
       <!-- Colonne 3 : la production -->
       <section class="panel produce">
         <div class="panel-head">
-          <h2>Production</h2>
+          <h2><span class="stepchip">3</span>Production</h2>
         </div>
 
         <div class="prod-form" id="prod-form">
@@ -356,6 +367,15 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
             </label>
           </details>
 
+          <!-- Ce qui va etre produit, en un coup d'oeil, avant de payer quoi que ce soit -->
+          <div class="recap" id="recap" hidden>
+            <span class="recap-item" id="r-format"></span>
+            <span class="recap-item" id="r-voice"></span>
+            <span class="recap-item" id="r-music"></span>
+            <span class="recap-item" id="r-duree"></span>
+            <span class="recap-item" id="r-cout"></span>
+          </div>
+
           <p class="issues" id="issues" hidden></p>
           <button class="btn btn-primary wide" id="produce">Produire la vidéo</button>
           <button class="btn btn-ghost wide" id="stop" hidden>Arrêter</button>
@@ -390,6 +410,27 @@ Sépare les parties par une ligne vide : le découpage respecte les paragraphes,
         <div class="result" id="result" hidden>
           <video id="player" controls playsinline></video>
           <a class="btn wide" id="download" download>Télécharger le MP4</a>
+        </div>
+
+        <!-- Tout ce qu'il faut pour publier, sans rouvrir un seul fichier -->
+        <div class="publish" id="publish" hidden>
+          <div class="group-head"><h3>Publier</h3></div>
+          <div class="pub-item">
+            <div class="pub-head"><span>Titre YouTube</span>
+              <button class="btn btn-ghost small" data-copy="pub-title">Copier</button></div>
+            <p class="pub-text" id="pub-title"></p>
+          </div>
+          <div class="pub-item">
+            <div class="pub-head"><span>Description <small>(crédits musique et visuels inclus)</small></span>
+              <button class="btn btn-ghost small" data-copy="pub-description">Copier</button></div>
+            <p class="pub-text pub-clamp" id="pub-description"></p>
+          </div>
+          <div class="pub-item">
+            <div class="pub-head"><span>Tags</span>
+              <button class="btn btn-ghost small" data-copy="pub-tags">Copier</button></div>
+            <p class="pub-text" id="pub-tags"></p>
+          </div>
+          <p class="note" id="pub-thumb"></p>
         </div>
       </section>
     </main>

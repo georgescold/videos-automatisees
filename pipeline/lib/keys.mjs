@@ -45,25 +45,34 @@ const writeStore = (store) => {
 };
 
 /**
- * Reprend la cle du .env dans le trousseau, une seule fois : c'est ce qui fait
- * apparaitre « la cle deja la » dans la liste des cles stockees.
+ * Reprend les cles du .env dans le trousseau, une seule fois chacune.
+ * ELEVENLABS_API_KEY (une cle) et ELEVENLABS_API_KEYS (plusieurs, separees
+ * par des virgules) : c'est ce qui permet d'installer le logiciel sur une
+ * autre machine en copiant un seul fichier.
  */
 const importEnvKey = (store) => {
-  const raw = String(env.elevenLabsKey ?? '').trim();
-  if (!raw) return false;
-  if (store.elevenlabs.some((k) => k.key === raw)) return false;
-  // L'utilisateur a supprime cette cle du trousseau : on ne la reimporte pas.
-  if (store.dismissedEnvKeys.includes(fingerprint(raw))) return false;
+  const candidates = [env.elevenLabsKey, ...String(env.elevenLabsKeysBulk ?? '').split(/[,;\s]+/)]
+    .map((k) => String(k ?? '').trim())
+    .filter(Boolean);
 
-  store.elevenlabs.push({
-    id: crypto.randomUUID().slice(0, 8),
-    label: 'Clé du .env',
-    key: raw,
-    source: 'env',
-    addedAt: new Date().toISOString(),
-    quota: null,
-  });
-  return true;
+  let changed = false;
+  for (const raw of candidates) {
+    if (!/^[A-Za-z0-9_-]{20,120}$/.test(raw)) continue;
+    if (store.elevenlabs.some((k) => k.key === raw)) continue;
+    // L'utilisateur a supprime cette cle du trousseau : on ne la reimporte pas.
+    if (store.dismissedEnvKeys.includes(fingerprint(raw))) continue;
+
+    store.elevenlabs.push({
+      id: crypto.randomUUID().slice(0, 8),
+      label: `Compte ${store.elevenlabs.length + 1}`,
+      key: raw,
+      source: 'env',
+      addedAt: new Date().toISOString(),
+      quota: null,
+    });
+    changed = true;
+  }
+  return changed;
 };
 
 const load = () => {

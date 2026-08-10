@@ -32,6 +32,9 @@ if (fs.existsSync(envFile)) {
 
 export const env = {
   elevenLabsKey: process.env.ELEVENLABS_API_KEY ?? '',
+  // Plusieurs cles d'un coup, separees par des virgules : c'est ce qui rend
+  // le .env portable d'une machine a l'autre, trousseau compris.
+  elevenLabsKeysBulk: process.env.ELEVENLABS_API_KEYS ?? '',
   voiceId: process.env.ELEVENLABS_VOICE_ID ?? 'XB0fDUnXU5powFXDhCwa',
   modelId: process.env.ELEVENLABS_MODEL_ID ?? 'eleven_multilingual_v2',
   // Obeissance aux balises d'intonation (eleven_v3) : 0 = tres expressif mais

@@ -1040,6 +1040,35 @@ const server = http.createServer(async (req, res) => {
       return json(res, 200, {ok: true});
     }
 
+    // --- metadonnees YouTube du dernier rendu (titre, description, credits) ---
+    if (route === '/api/meta' && req.method === 'GET') {
+      const slug = url.searchParams.get('slug') ?? '';
+      if (!SLUG_OK.test(slug)) return json(res, 400, {error: 'Slug invalide'});
+      const file = p('out', `${slug}.meta.json`);
+      if (!fs.existsSync(file)) return json(res, 404, {error: 'Pas encore de rendu'});
+      const meta = readJson(file);
+
+      // La description prete a coller : celle du script, plus les credits
+      // obligatoires (musique CC-BY, voix locale, banques d'images).
+      const blocs = [String(meta.youtube?.description ?? '').trim()];
+      const credits = [];
+      if (meta.musicAttribution) credits.push(`Musique : ${meta.musicAttribution}`);
+      if (meta.voiceAttribution) credits.push(meta.voiceAttribution);
+      if (Array.isArray(meta.credits) && meta.credits.length > 0) {
+        credits.push(`Visuels : ${[...new Set(meta.credits)].join(', ')}`);
+      }
+      if (credits.length > 0) blocs.push(credits.join('\n'));
+
+      return json(res, 200, {
+        title: meta.youtube?.title ?? meta.title ?? slug,
+        description: blocs.filter(Boolean).join('\n\n'),
+        tags: meta.youtube?.tags ?? [],
+        thumbnailText: meta.youtube?.thumbnail_text ?? '',
+        durationSeconds: meta.durationSeconds ?? null,
+        format: meta.format ?? 'short',
+      });
+    }
+
     // --- lecture des rendus ---
     const videoMatch = route.match(/^\/media\/([A-Za-z0-9._-]+\.mp4)$/);
     if (videoMatch && req.method === 'GET') {

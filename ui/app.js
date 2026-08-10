@@ -209,6 +209,7 @@ const setMusic = (file, attribution = null) => {
   $('music-attribution').textContent = attribution
     ? `À créditer en description : ${attribution}`
     : '';
+  renderCounters();
 };
 
 const renderTracks = (tracks) => {
@@ -309,6 +310,10 @@ $('music-clear').addEventListener('click', () => setMusic(null));
 $('o-volume').addEventListener('input', () => {
   $('volume-value').textContent = `${$('o-volume').value} %`;
 });
+
+// Le recapitulatif suit le format choisi. (Fleche obligatoire : renderCounters
+// est declare plus bas, le referencer directement ici planterait au chargement.)
+$('o-format').addEventListener('change', () => renderCounters());
 
 $('o-media').addEventListener('change', () => {
   const notes = {
@@ -520,6 +525,7 @@ const renderCounters = () => {
   banner.textContent =
     issues.length > 0 ? `À compléter avant de produire : ${issues.join(', ')}.` : '';
   $('produce').disabled = issues.length > 0 || state.running;
+  renderRecap();
 };
 
 const renderBeats = () => {
@@ -649,6 +655,62 @@ const loadEmotions = async () => {
   if (state.mode === 'edit') renderBeats();
 };
 
+/** Copie dans le presse-papier, avec repli si le navigateur refuse. */
+const copyText = async (text, label) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast(`${label} copié`);
+  } catch {
+    toast('Copie refusée par le navigateur : sélectionne le texte à la main', true);
+  }
+};
+
+for (const button of document.querySelectorAll('[data-copy]')) {
+  button.addEventListener('click', () => {
+    const source = $(button.dataset.copy);
+    copyText(source.textContent, source.closest('.pub-item')?.querySelector('span')?.textContent ?? 'Texte');
+  });
+}
+
+/**
+ * Tout ce qu'il faut pour publier le dernier rendu : titre, description avec
+ * les credits obligatoires deja integres, tags. Chaque champ se copie d'un
+ * clic — fini d'aller pecher les credits dans un fichier JSON.
+ */
+const loadPublish = async (slug) => {
+  try {
+    const meta = await api(`/api/meta?slug=${encodeURIComponent(slug)}`);
+    $('pub-title').textContent = meta.title;
+    $('pub-description').textContent = meta.description;
+    $('pub-tags').textContent = (meta.tags ?? []).join(', ');
+    $('pub-thumb').textContent = meta.thumbnailText
+      ? `Texte de miniature suggéré : « ${meta.thumbnailText} »`
+      : '';
+    $('publish').hidden = false;
+  } catch {
+    $('publish').hidden = true;
+  }
+};
+
+/**
+ * Un script deja rendu reaffiche sa video et son bloc Publier des qu'on
+ * l'ouvre : le travail de la veille ne disparait plus au rechargement.
+ */
+const showExistingRender = () => {
+  const file = currentScriptMeta()?.renders?.[0];
+  if (file) {
+    const url = `/media/${file}?t=${Date.now()}`;
+    $('player').src = url;
+    $('download').href = url;
+    $('download').setAttribute('download', file);
+    $('result').hidden = false;
+    loadPublish(state.slug);
+  } else {
+    $('result').hidden = true;
+    $('publish').hidden = true;
+  }
+};
+
 const openScript = async (slug) => {
   if (
     state.dirty &&
@@ -667,6 +729,7 @@ const openScript = async (slug) => {
   renderScriptList();
   refreshQuota();
   loadEmotions();
+  showExistingRender();
 };
 
 const collectDoc = () => ({
@@ -809,6 +872,47 @@ const currentScriptMeta = () => state.scripts.find((s) => s.slug === state.slug)
  */
 const willSynthesize = () =>
   !currentScriptMeta()?.hasAudio || $('o-force-voice').checked;
+
+/**
+ * Ce qui va etre produit, resume en une ligne au-dessus du bouton : format,
+ * voix, musique, duree estimee et cout en credits. On sait ce qu'on paie
+ * AVANT de cliquer, plus besoin de derouler les reglages pour verifier.
+ */
+const renderRecap = () => {
+  const box = $('recap');
+  const ready = state.mode === 'edit' && state.doc;
+  box.hidden = !ready;
+  if (!ready) return;
+
+  const words = countWords();
+  $('r-format').textContent = $('o-format').value === 'long' ? '16:9' : '9:16';
+  $('r-duree').textContent = `≈ ${Math.round(words / 2.5)} s`;
+  $('r-music').textContent = state.music
+    ? `♪ ${state.music.replace(/\.(mp3|wav|m4a|aac)$/i, '').slice(0, 24)}`
+    : 'Sans musique';
+
+  const voiceLabel =
+    state.voiceMode === 'mine'
+      ? 'Ta voix'
+      : state.voiceMode === 'sts'
+        ? 'Ta voix, relookée'
+        : state.ttsEngine === 'xtts'
+          ? 'Voix locale HD'
+          : (selectedVoice()?.name ?? 'Voix du projet').split(' - ')[0];
+  $('r-voice').textContent = voiceLabel;
+
+  const eleven = state.voiceMode === 'tts' && state.ttsEngine === 'elevenlabs';
+  const cout = $('r-cout');
+  if (!eleven) {
+    cout.hidden = true;
+  } else if (!willSynthesize()) {
+    cout.hidden = false;
+    cout.textContent = 'Voix en cache · 0 crédit';
+  } else {
+    cout.hidden = false;
+    cout.textContent = state.quota?.needed ? `${fmt(state.quota.needed)} crédits` : 'Crédits : calcul…';
+  }
+};
 
 const renderAudioState = () => {
   const custom = Boolean(currentScriptMeta()?.hasAudio);
@@ -1420,6 +1524,7 @@ const produce = async () => {
     $('console').textContent = '';
     $('job').hidden = false;
     $('result').hidden = true;
+    $('publish').hidden = true;
     $('job-phase').textContent = 'Préparation';
     setProgress('build', 0);
     startClock();
@@ -1469,6 +1574,7 @@ const listen = (id) => {
         $('download').href = url;
         $('download').setAttribute('download', data.output);
         $('result').hidden = false;
+        loadPublish(state.slug);
         toast('Vidéo prête');
       } else if (data.status === 'done') {
         toast('Préparation terminée. Ouvre Remotion Studio pour vérifier.');
